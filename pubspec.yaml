@@ -38,6 +38,7 @@ dependencies:
   mobile_scanner: ^4.0.0      # Untuk membaca QR Code
   model_viewer_plus: ^1.7.0   # Untuk render 3D dan AR Mode
   path_provider: ^2.1.2
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -62,7 +63,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/models/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
