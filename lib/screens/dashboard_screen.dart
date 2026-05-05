@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'qr_scanner_screen.dart';
 import '../provider/language_provider.dart';
+import 'my_koleksi_screen.dart';
 
 class Koleksi {
   final String nama;
@@ -468,38 +469,44 @@ class _DashboardScreenState extends State<DashboardScreen>
     Map<String, Map<String, String>> db,
   ) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // ── Tombol Globe (Ganti Bahasa) — kiri ────────────────
-          _buildCircleButton(
-            // Ikon globe dengan style senada (outlined, warna putih)
-            icon: Icons.language_rounded,
-            onTap: _showLanguageSheet,
-          ),
-
-          // ── Tombol Scan QR + AR — tengah ──────────────────────
-          Container(
-            height: 60,
-            width: 140,
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(40),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+          child: Container(
+            height: 64,
             decoration: BoxDecoration(
-              color: const Color(0xFF1B233A),
-              borderRadius: BorderRadius.circular(30),
+              color: const Color(0xFF1B233A).withOpacity(0.88),
+              borderRadius: BorderRadius.circular(40),
               border: Border.all(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withOpacity(0.15),
                 width: 1,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.35),
+                  blurRadius: 20,
+                  spreadRadius: 2,
+                  offset: const Offset(0, 6),
+                ),
+              ],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.filter_center_focus,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
+                // ── 1. Tombol Globe (Bahasa)
+                _buildIslandButton(
+                  icon: Icons.language_rounded,
+                  onTap: _showLanguageSheet,
+                ),
+
+                _buildDivider(),
+
+                // ── 2. Tombol Scan QR
+                _buildIslandButton(
+                  icon: Icons.filter_center_focus_rounded,
+                  onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -508,52 +515,86 @@ class _DashboardScreenState extends State<DashboardScreen>
                     );
                   },
                 ),
-                Container(width: 1, height: 30, color: Colors.white30),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Text(
-                    "AR",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+
+                _buildDivider(),
+
+                // ── 3. Tombol AR (label teks)
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const QRScannerScreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Text(
+                      'AR',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
                     ),
                   ),
+                ),
+
+                _buildDivider(),
+
+                // ── 4. Tombol My Koleksi
+                _buildIslandButton(
+                  icon: Icons.collections_bookmark_rounded,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MyKoleksiScreen(),
+                      ),
+                    );
+                  },
+                  isHighlighted: true, // warna emas
                 ),
               ],
             ),
           ),
-
-          // ── Tombol Info — kanan ────────────────────────────────
-          _buildCircleButton(icon: Icons.info_outline_rounded, onTap: () {}),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _buildCircleButton({
+  Widget _buildIslandButton({
     required IconData icon,
     required VoidCallback onTap,
+    bool isHighlighted = false,
   }) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(30),
-      child: Container(
-        height: 55,
-        width: 55,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white.withOpacity(0.1),
-          border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
+      child: SizedBox(
+        width: 48,
+        height: 48,
+        child: Icon(
+          icon,
+          color: isHighlighted ? const Color(0xFFD4A24C) : Colors.white,
+          size: 26,
         ),
-        child: Icon(icon, color: Colors.white, size: 28),
       ),
+    );
+  }
+
+  Widget _buildDivider() {
+    return Container(
+      width: 1,
+      height: 28,
+      color: Colors.white.withOpacity(0.12),
     );
   }
 }
