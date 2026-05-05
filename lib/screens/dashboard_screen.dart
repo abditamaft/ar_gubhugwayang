@@ -2,17 +2,19 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'qr_scanner_screen.dart';
+import '../provider/language_provider.dart';
 
-// Model Data untuk Koleksi
 class Koleksi {
   final String nama;
   final String imagePath;
   final String deskripsiSingkat;
+  final String deskripsiSingkatEn;
 
   Koleksi({
     required this.nama,
     required this.imagePath,
     required this.deskripsiSingkat,
+    required this.deskripsiSingkatEn,
   });
 }
 
@@ -23,95 +25,105 @@ class DashboardScreen extends StatefulWidget {
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _DashboardScreenState extends State<DashboardScreen>
+    with SingleTickerProviderStateMixin {
   final AppinioSwiperController _swiperController = AppinioSwiperController();
   final TextEditingController _searchController = TextEditingController();
-
   Key _swiperKey = UniqueKey();
 
-  // Ini adalah "Database Lokal" (Array) Anda
-  // Ini adalah "Database Lokal" (Array) berisi 15 koleksi berbeda
   final List<Koleksi> _daftarKoleksi = [
     Koleksi(
-      nama: "Topeng Panji",
-      imagePath: 'assets/images/koleksi_1.jpg',
-      deskripsiSingkat: "Topeng tradisional yang melambangkan kelembutan.",
+      nama: "Si Unyil",
+      imagePath: 'assets/images/koleksi_1.png',
+      deskripsiSingkat: "Wayang golek yang menggambarkan keluguan.",
+      deskripsiSingkatEn: "Puppet character who symbolizes innocence.",
     ),
     Koleksi(
-      nama: "Keris Pusaka",
-      imagePath: 'assets/images/koleksi_2.jpg',
-      deskripsiSingkat:
-          "Senjata tikam golongan belati dengan bentuk asimetris.",
+      nama: "Ucrit",
+      imagePath: 'assets/images/koleksi_2.png',
+      deskripsiSingkat: "Sahabat Unyil yang melambangkan keberagaman.",
+      deskripsiSingkatEn: "Unyil's friend who symbolizes diversity.",
     ),
     Koleksi(
-      nama: "Gong Gamelan",
-      imagePath: 'assets/images/koleksi_3.jpg',
-      deskripsiSingkat:
-          "Instrumen musik pukul tradisional yang terbuat dari perunggu.",
+      nama: "Usro",
+      imagePath: 'assets/images/koleksi_3.png',
+      deskripsiSingkat: "Teman Unyil yang melambangkan kesetiakawanan.",
+      deskripsiSingkatEn: "Unyil's friend who symbolizes solidarity.",
     ),
     Koleksi(
-      nama: "Wayang Kulit Arjuna",
-      imagePath: 'assets/images/koleksi_4.jpg',
-      deskripsiSingkat: "Tokoh pewayangan berparas tampan dan berhati lembut.",
+      nama: "Pak Ogah",
+      imagePath: 'assets/images/koleksi_4.png',
+      deskripsiSingkat: "Tokoh antagonis yang melambangkan pengangguran.",
+      deskripsiSingkatEn: "Antagonist character who symbolizes unemployment.",
     ),
     Koleksi(
-      nama: "Wayang Golek Cepot",
-      imagePath: 'assets/images/koleksi_5.jpg',
-      deskripsiSingkat: "Karakter punakawan khas Sunda yang jenaka.",
+      nama: "Pak Raden",
+      imagePath: 'assets/images/koleksi_5.png',
+      deskripsiSingkat: "Tokoh pemarah yang melambangkan kepelitan.",
+      deskripsiSingkatEn: "Grumpy character who symbolizes stinginess.",
     ),
     Koleksi(
-      nama: "Batik Megamendung",
+      nama: "Mbok Bariah",
       imagePath: 'assets/images/koleksi_6.png',
-      deskripsiSingkat: "Motif kain batik khas Cirebon berbentuk awan.",
+      deskripsiSingkat: "Pedagang Madura yang melambangkan kegigihan.",
+      deskripsiSingkatEn: "Madurese trader who symbolizes persistence.",
     ),
     Koleksi(
-      nama: "Mahkota Binokasih",
+      nama: "Meilani",
       imagePath: 'assets/images/koleksi_7.png',
-      deskripsiSingkat: "Mahkota peninggalan Kerajaan Pajajaran.",
+      deskripsiSingkat: "Teman Unyil yang melambangkan kecerdasan.",
+      deskripsiSingkatEn: "Unyil's friend who symbolizes intelligence.",
     ),
     Koleksi(
-      nama: "Kuda Lumping",
+      nama: "Cuplis",
       imagePath: 'assets/images/koleksi_8.png',
-      deskripsiSingkat: "Properti tari tradisional berbentuk tiruan kuda.",
+      deskripsiSingkat: "Teman botak yang melambangkan keceriaan.",
+      deskripsiSingkatEn: "Bald friend who symbolizes cheerfulness.",
     ),
     Koleksi(
-      nama: "Angklung Buhun",
+      nama: "Pak Ableh",
       imagePath: 'assets/images/koleksi_9.png',
-      deskripsiSingkat: "Alat musik bambu kuno khas masyarakat Baduy.",
+      deskripsiSingkat: "Rekan Ogah yang melambangkan kelengahan.",
+      deskripsiSingkatEn: "Ogah's partner who symbolizes negligence.",
     ),
     Koleksi(
-      nama: "Wayang Beber",
+      nama: "Semar",
       imagePath: 'assets/images/koleksi_10.png',
-      deskripsiSingkat: "Wayang berbentuk lembaran cerita bergambar.",
+      deskripsiSingkat: "Tokoh bijaksana yang melambangkan pengasuhan.",
+      deskripsiSingkatEn: "Wise character who symbolizes nurturing.",
     ),
     Koleksi(
-      nama: "Tombak Trisula",
+      nama: "Cepot",
       imagePath: 'assets/images/koleksi_11.png',
-      deskripsiSingkat: "Senjata tradisional bermata tiga.",
+      deskripsiSingkat: "Anak Semar yang melambangkan humor.",
+      deskripsiSingkatEn: "Semar's son who symbolizes humor.",
     ),
     Koleksi(
-      nama: "Topeng Kelana",
+      nama: "Dawala",
       imagePath: 'assets/images/koleksi_12.png',
-      deskripsiSingkat: "Topeng berwarna merah melambangkan kemarahan.",
+      deskripsiSingkat: "Saudara Cepot yang melambangkan kesabaran.",
+      deskripsiSingkatEn: "Cepot's brother who symbolizes patience.",
     ),
     Koleksi(
-      nama: "Gamelan Kenong",
+      nama: "Gareng",
       imagePath: 'assets/images/koleksi_13.png',
-      deskripsiSingkat: "Alat musik pukul yang menjadi penegas irama.",
+      deskripsiSingkat: "Anak Semar yang melambangkan kehati-hatian.",
+      deskripsiSingkatEn: "Semar's son who symbolizes caution.",
     ),
     Koleksi(
-      nama: "Arca Ganesha",
+      nama: "Amir Hamzah",
       imagePath: 'assets/images/koleksi_14.png',
-      deskripsiSingkat: "Patung dewa pelindung dan lambang pengetahuan.",
+      deskripsiSingkat: "Pahlawan Islam yang melambangkan keberanian.",
+      deskripsiSingkatEn: "Islamic hero who symbolizes bravery.",
     ),
     Koleksi(
-      nama: "Blencong",
+      nama: "Panji Asmarabangun",
       imagePath: 'assets/images/koleksi_15.png',
-      deskripsiSingkat: "Lampu minyak gantung khusus pertunjukan wayang kulit.",
+      deskripsiSingkat: "Kesatria luhur yang melambangkan kehalusan.",
+      deskripsiSingkatEn: "Noble knight who symbolizes refinement.",
     ),
   ];
 
-  // List kartu yang akan dirender oleh Swiper
   List<Widget> _cards = [];
   int _currentIndex = 0;
 
@@ -122,42 +134,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void _loadCards() {
-    // Membangun widget kartu berdasarkan data koleksi
-    _cards = _daftarKoleksi.map((koleksi) {
-      return _buildCard(koleksi);
-    }).toList();
+    _cards = _daftarKoleksi.map((k) => _buildCard(k)).toList();
   }
 
-  // --- FUNGSI BARU: LOMPAT KE KARTU PENCARIAN ---
   void _jumpToCard(Koleksi targetKoleksi) {
     int targetIndex = _daftarKoleksi.indexOf(targetKoleksi);
-
     if (targetIndex != -1 && targetIndex != 0) {
       setState(() {
-        // 1. Potong dan gabung array agar item yang dicari pindah ke urutan pertama (index 0)
         List<Koleksi> reorderedList = [
           ..._daftarKoleksi.sublist(targetIndex),
           ..._daftarKoleksi.sublist(0, targetIndex),
         ];
-
-        // 2. Terapkan susunan baru ke database lokal kita
         _daftarKoleksi.clear();
         _daftarKoleksi.addAll(reorderedList);
-
-        // 3. Render ulang desain kartunya
         _loadCards();
-
-        // 4. Reset teks deskripsi ke index 0 (karena item target sekarang ada di atas)
         _currentIndex = 0;
-
-        // 5. Ubah kunci Swiper agar Flutter merender ulang tumpukannya dengan mulus
         _swiperKey = UniqueKey();
       });
     }
   }
 
-  // Fungsi untuk menangani saat kartu diswipe
-  // --- KODE BARU UNTUK FUNGSI SWIPE ---
   void _onSwipeEnd(
     int previousIndex,
     int targetIndex,
@@ -165,29 +161,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
   ) {
     if (activity is Swipe) {
       setState(() {
-        // Karena loop: true, targetIndex akan terus bertambah (15, 16, 17, dst).
-        // Modulus (%) memastikan index selalu kembali ke rentang 0 sampai panjang array dikurangi 1.
         _currentIndex = targetIndex % _daftarKoleksi.length;
       });
     }
   }
 
+  // ── BOTTOM SHEET BAHASA ──────────────────────────────
+  void _showLanguageSheet() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      // Animasi dari bawah ke atas — default showModalBottomSheet sudah ada
+      builder: (context) => _LanguageSheet(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final lang = LanguageScope.of(context);
+    final db = AppStrings.dashboard;
+
     return Scaffold(
-      resizeToAvoidBottomInset: false, // Mencegah keyboard mendorong UI ke atas
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          // 1. BACKGROUND GRADIENT (Mengikuti desain Onboarding)
+          // Background
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color(0xFF1B2342), // Biru gelap atas
-                  Color(0xFF2C392A), // Kehijauan/Kuning tengah
-                  Color(0xFF141318), // Gelap bawah
+                  Color(0xFF1B2342),
+                  Color(0xFF2C392A),
+                  Color(0xFF141318),
                 ],
               ),
             ),
@@ -196,17 +204,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           SafeArea(
             child: Column(
               children: [
-                // 2. HEADER (Logo, Search Bar, Profil)
-                _buildHeader(),
+                _buildHeader(lang, db),
 
-                // 3. JUDUL "KOLEKSI GUBUG WAYANG"
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: Text(
-                    'KOLEKSI GUBUG WAYANG',
-                    style: TextStyle(
-                      fontFamily:
-                          'Inter', // Atau font serif jika sesuai desain (misal: 'Playfair Display')
+                    lang.s(db, 'title'),
+                    style: const TextStyle(
+                      fontFamily: 'Inter',
                       fontSize: 22,
                       fontWeight: FontWeight.w300,
                       letterSpacing: 2.0,
@@ -215,35 +220,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
 
-                // 4. AREA SWIPER (Album Animasi)
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                    // --- KODE BARU UNTUK WIDGET SWIPER ---
                     child: AppinioSwiper(
                       key: _swiperKey,
                       controller: _swiperController,
-                      cardCount:
-                          _cards.length, // cardsCount diubah menjadi cardCount
-                      onSwipeEnd:
-                          _onSwipeEnd, // onSwipe diubah menjadi onSwipeEnd
+                      cardCount: _cards.length,
+                      onSwipeEnd: _onSwipeEnd,
                       backgroundCardCount: 2,
                       backgroundCardScale: 0.9,
                       backgroundCardOffset: const Offset(0, -30),
                       loop: true,
-                      cardBuilder: (BuildContext context, int index) {
-                        // cardsBuilder diubah menjadi cardBuilder
-                        return _cards[index];
-                      },
+                      cardBuilder: (context, index) => _cards[index],
                     ),
                   ),
                 ),
 
-                // 5. TEKS DESKRIPSI DI BAWAH KARTU
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: Text(
-                    _daftarKoleksi[_currentIndex].deskripsiSingkat,
+                    lang.isIndonesian
+                        ? _daftarKoleksi[_currentIndex].deskripsiSingkat
+                        : _daftarKoleksi[_currentIndex].deskripsiSingkatEn,
                     style: const TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 14,
@@ -252,8 +251,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
 
-                // 6. BOTTOM NAVIGATION / ACTION BUTTONS
-                _buildBottomActions(),
+                _buildBottomActions(lang, db),
                 const SizedBox(height: 20),
               ],
             ),
@@ -263,87 +261,78 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  // --- WIDGET HELPER: HEADER DENGAN SEARCH AUTOCOMPLETE ---
-  Widget _buildHeader() {
+  Widget _buildHeader(
+    LanguageProvider lang,
+    Map<String, Map<String, String>> db,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       child: Row(
         children: [
           // Logo Kiri
           ClipOval(
-            // Tambahkan ClipOval agar gambar dari internet terpotong bulat rapi
             child: Image.asset(
-              'assets/images/polinema.png', // MASUKKAN URL GAMBARMU DI SINI
+              'assets/images/polije.png',
               height: 40,
               width: 40,
-              fit: BoxFit.cover, // Memastikan gambar memenuhi area lingkaran
-              errorBuilder: (context, error, stackTrace) =>
+              fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) =>
                   const Icon(Icons.school, color: Colors.white, size: 40),
             ),
           ),
           const SizedBox(width: 12),
 
-          // Search Bar Autocomplete
+          // Search Bar
           Expanded(
             child: RawAutocomplete<Koleksi>(
               textEditingController: _searchController,
               focusNode: FocusNode(),
               displayStringForOption: (Koleksi option) => option.nama,
-              optionsBuilder: (TextEditingValue textEditingValue) {
-                if (textEditingValue.text.isEmpty) {
-                  return const Iterable<Koleksi>.empty();
-                }
-                return _daftarKoleksi.where((Koleksi option) {
-                  return option.nama.toLowerCase().contains(
-                    textEditingValue.text.toLowerCase(),
-                  );
-                });
+              optionsBuilder: (TextEditingValue value) {
+                if (value.text.isEmpty) return const Iterable<Koleksi>.empty();
+                return _daftarKoleksi.where(
+                  (k) =>
+                      k.nama.toLowerCase().contains(value.text.toLowerCase()),
+                );
               },
               onSelected: (Koleksi selection) {
-                // --- PANGGIL FUNGSI LOMPAT KARTU & TUTUP KEYBOARD ---
                 _jumpToCard(selection);
                 FocusScope.of(context).unfocus();
               },
-              fieldViewBuilder:
-                  (context, controller, focusNode, onFieldSubmitted) {
-                    return TextField(
-                      controller: controller,
-                      focusNode: focusNode,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        hintText: 'Cari koleksi...',
-                        hintStyle: TextStyle(
-                          color: Colors.white.withOpacity(0.5),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.search,
-                          color: Colors.white,
-                        ),
-                        filled: true,
-                        fillColor: Colors.white.withOpacity(0.1),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: const BorderSide(color: Colors.white30),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: const BorderSide(color: Colors.white30),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          borderSide: const BorderSide(color: Colors.white),
-                        ),
-                      ),
-                    );
-                  },
+              fieldViewBuilder: (context, controller, focusNode, _) {
+                return TextField(
+                  controller: controller,
+                  focusNode: focusNode,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: lang.s(db, 'search'),
+                    hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+                    prefixIcon: const Icon(Icons.search, color: Colors.white),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.1),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      borderSide: const BorderSide(color: Colors.white30),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      borderSide: const BorderSide(color: Colors.white30),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      borderSide: const BorderSide(color: Colors.white),
+                    ),
+                  ),
+                );
+              },
               optionsViewBuilder: (context, onSelected, options) {
                 return Align(
                   alignment: Alignment.topLeft,
                   child: Material(
                     elevation: 4.0,
                     borderRadius: BorderRadius.circular(15),
-                    color: const Color(0xFF2C392A), // Sesuaikan warna dropdown
+                    color: const Color(0xFF2C392A),
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(
                         maxHeight: 200,
@@ -353,7 +342,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         itemCount: options.length,
-                        itemBuilder: (BuildContext context, int index) {
+                        itemBuilder: (context, index) {
                           final Koleksi option = options.elementAt(index);
                           return ListTile(
                             leading: ClipRRect(
@@ -371,9 +360,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               option.nama,
                               style: const TextStyle(color: Colors.white),
                             ),
-                            onTap: () {
-                              onSelected(option);
-                            },
+                            onTap: () => onSelected(option),
                           );
                         },
                       ),
@@ -386,15 +373,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
           const SizedBox(width: 12),
 
           // Logo Kanan
-          Container(
+          SizedBox(
             height: 40,
             width: 40,
             child: Padding(
               padding: const EdgeInsets.all(4.0),
               child: Image.asset(
-                'assets/images/Logo_gubugwayang.png', // Ganti dengan logo Wayang Anda
+                'assets/images/Logo_gubugwayang.png',
                 fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) =>
+                errorBuilder: (_, __, ___) =>
                     const Icon(Icons.museum, color: Colors.black, size: 20),
               ),
             ),
@@ -404,7 +391,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  // --- WIDGET HELPER: DESAIN KARTU/ALBUM ---
   Widget _buildCard(Koleksi koleksi) {
     return Container(
       decoration: BoxDecoration(
@@ -422,15 +408,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Stack(
-          // MENGGUNAKAN STACK AGAR BISA DITUMPUK
-          fit: StackFit
-              .expand, // Memaksa isi tumpukan memenuhi seluruh layar kartu
+          fit: StackFit.expand,
           children: [
-            // 1. GAMBAR LATAR BELAKANG
             Image.asset(
               koleksi.imagePath,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
+              errorBuilder: (_, __, ___) => Container(
                 color: Colors.grey[300],
                 child: const Center(
                   child: Icon(
@@ -441,13 +424,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ),
             ),
-
-            // 2. KOTAK JUDUL (ROUNDED 30)
             Positioned(
-              bottom: 20, // Jarak kotak dari ujung bawah kartu
-              left: 20, // Jarak kotak dari ujung kiri kartu
+              bottom: 20,
+              left: 20,
               child: ClipRRect(
-                // Menambahkan efek blur sedikit ala iOS/Figma agar lebih premium (Opsional)
                 borderRadius: BorderRadius.circular(30),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
@@ -457,19 +437,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       vertical: 12,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(
-                        0.5,
-                      ), // Latar hitam semi-transparan
-                      borderRadius: BorderRadius.circular(
-                        30,
-                      ), // Efek melengkung
+                      color: Colors.black.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(30),
                       border: Border.all(
                         color: Colors.white.withOpacity(0.2),
                         width: 1,
-                      ), // Garis tepi tipis
+                      ),
                     ),
                     child: Text(
-                      koleksi.nama, // Menampilkan judul koleksi secara dinamis
+                      koleksi.nama,
                       style: const TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 16,
@@ -487,27 +463,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  // --- WIDGET HELPER: TOMBOL BOTTOM (Menu, Kamera/AR, Info) ---
-  Widget _buildBottomActions() {
+  Widget _buildBottomActions(
+    LanguageProvider lang,
+    Map<String, Map<String, String>> db,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Tombol Grid
+          // ── Tombol Globe (Ganti Bahasa) — kiri ────────────────
           _buildCircleButton(
-            icon: Icons.grid_view_rounded,
-            onTap: () {
-              // Aksi lihat semua koleksi
-            },
+            // Ikon globe dengan style senada (outlined, warna putih)
+            icon: Icons.language_rounded,
+            onTap: _showLanguageSheet,
           ),
 
-          // Tombol Kamera/AR Tengah
+          // ── Tombol Scan QR + AR — tengah ──────────────────────
           Container(
             height: 60,
             width: 140,
             decoration: BoxDecoration(
-              color: const Color(0xFF1B233A), // Warna biru gelap tombol AR
+              color: const Color(0xFF1B233A),
               borderRadius: BorderRadius.circular(30),
               border: Border.all(
                 color: Colors.white.withOpacity(0.2),
@@ -523,7 +500,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    // --- KODE BARU: NAVIGASI KE QR SCANNER ---
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -532,11 +508,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     );
                   },
                 ),
-                Container(
-                  width: 1,
-                  height: 30,
-                  color: Colors.white30,
-                ), // Garis pemisah
+                Container(width: 1, height: 30, color: Colors.white30),
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,
@@ -558,19 +530,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
 
-          // Tombol Info
-          _buildCircleButton(
-            icon: Icons.info_outline_rounded,
-            onTap: () {
-              // Aksi lihat info
-            },
-          ),
+          // ── Tombol Info — kanan ────────────────────────────────
+          _buildCircleButton(icon: Icons.info_outline_rounded, onTap: () {}),
         ],
       ),
     );
   }
 
-  // Helper untuk membuat tombol lingkaran
   Widget _buildCircleButton({
     required IconData icon,
     required VoidCallback onTap,
@@ -587,6 +553,249 @@ class _DashboardScreenState extends State<DashboardScreen> {
           border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
         ),
         child: Icon(icon, color: Colors.white, size: 28),
+      ),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// LANGUAGE BOTTOM SHEET WIDGET
+// ═══════════════════════════════════════════════════════
+class _LanguageSheet extends StatefulWidget {
+  @override
+  State<_LanguageSheet> createState() => _LanguageSheetState();
+}
+
+class _LanguageSheetState extends State<_LanguageSheet>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animController;
+  late Animation<double> _slideAnim;
+  late Animation<double> _fadeAnim;
+
+  @override
+  void initState() {
+    super.initState();
+    _animController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+    _slideAnim = Tween<double>(begin: 1.0, end: 0.0).animate(
+      CurvedAnimation(parent: _animController, curve: Curves.easeOutCubic),
+    );
+    _fadeAnim = CurvedAnimation(parent: _animController, curve: Curves.easeIn);
+    _animController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final lang = LanguageScope.of(context);
+    final db = AppStrings.dashboard;
+
+    return AnimatedBuilder(
+      animation: _animController,
+      builder: (context, child) {
+        return FadeTransition(
+          opacity: _fadeAnim,
+          child: Transform.translate(
+            offset: Offset(0, 60 * _slideAnim.value),
+            child: child,
+          ),
+        );
+      },
+      child: ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color(0xFF1B2342).withOpacity(0.95),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(28),
+              ),
+              border: Border.all(color: Colors.white12, width: 1),
+            ),
+            child: SafeArea(
+              top: false,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Handle bar
+                    Container(
+                      width: 40,
+                      height: 4,
+                      margin: const EdgeInsets.only(bottom: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white24,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+
+                    // Header
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFD4A24C).withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(
+                            Icons.language_rounded,
+                            color: Color(0xFFD4A24C),
+                            size: 24,
+                          ),
+                        ),
+                        const SizedBox(width: 14),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              lang.s(db, 'langSheet_title'),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              lang.s(db, 'langSheet_sub'),
+                              style: const TextStyle(
+                                color: Colors.white54,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    // Opsi Bahasa Indonesia
+                    _buildLangOption(
+                      context: context,
+                      lang: lang,
+                      langCode: 'id',
+                      flag: '🇮🇩',
+                      name: lang.s(db, 'lang_id'),
+                      subtitle: lang.s(db, 'lang_id_sub'),
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    // Opsi English
+                    _buildLangOption(
+                      context: context,
+                      lang: lang,
+                      langCode: 'en',
+                      flag: '🇬🇧',
+                      name: lang.s(db, 'lang_en'),
+                      subtitle: lang.s(db, 'lang_en_sub'),
+                    ),
+
+                    const SizedBox(height: 8),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLangOption({
+    required BuildContext context,
+    required LanguageProvider lang,
+    required String langCode,
+    required String flag,
+    required String name,
+    required String subtitle,
+  }) {
+    final bool isSelected = lang.lang == langCode;
+
+    return GestureDetector(
+      onTap: () {
+        lang.setLanguage(langCode);
+        // Tutup sheet setelah pilih
+        Navigator.pop(context);
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? const Color(0xFFD4A24C).withOpacity(0.15)
+              : Colors.white.withOpacity(0.05),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected
+                ? const Color(0xFFD4A24C).withOpacity(0.6)
+                : Colors.white12,
+            width: isSelected ? 1.5 : 1,
+          ),
+        ),
+        child: Row(
+          children: [
+            // Flag emoji
+            Text(flag, style: const TextStyle(fontSize: 28)),
+            const SizedBox(width: 16),
+
+            // Nama + subtitle
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: TextStyle(
+                      color: isSelected
+                          ? const Color(0xFFD4A24C)
+                          : Colors.white,
+                      fontSize: 15,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(color: Colors.white54, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+
+            // Centang jika dipilih
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 200),
+              child: isSelected
+                  ? Container(
+                      key: const ValueKey('check'),
+                      padding: const EdgeInsets.all(4),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFD4A24C),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.check_rounded,
+                        color: Colors.black,
+                        size: 14,
+                      ),
+                    )
+                  : const SizedBox(key: ValueKey('empty'), width: 22),
+            ),
+          ],
+        ),
       ),
     );
   }

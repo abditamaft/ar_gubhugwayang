@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'dashboard_screen.dart';
+import '../provider/language_provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -12,62 +13,45 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen>
     with SingleTickerProviderStateMixin {
   bool _startAnimation = false;
+  int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    // Pakai addPostFrameCallback agar animasi berjalan tepat setelah frame pertama render
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(const Duration(milliseconds: 100), () {
-        if (mounted) {
-          setState(() {
-            _startAnimation = true;
-          });
-        }
+        if (mounted) setState(() => _startAnimation = true);
       });
     });
   }
 
-  int _currentPage = 0;
-
-  final List<Map<String, String>> _onboardingData = [
-    {
-      "title": "Museum Gubug Wayang",
-      "subtitle":
-          "Jelajahi wayang dan artefak museum\ndalam bentuk 3D interaktif.",
-    },
-    {
-      "title": "Scan & Hidupkan Objek",
-      "subtitle":
-          "Arahkan kamera ke gambar atau objek\nmuseum, lihat jadi hidup!",
-    },
-    {
-      "title": "Belajar dengan Cara Baru",
-      "subtitle": "Dengar cerita, pahami filosofi, dan\neksplor budaya.",
-    },
-  ];
-
   void _nextPage() {
     if (_currentPage < 2) {
-      setState(() {
-        _currentPage++;
-      });
+      setState(() => _currentPage++);
     } else {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardScreen()),
+        MaterialPageRoute(builder: (_) => const DashboardScreen()),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final lang = LanguageScope.of(context);
+    final ob = AppStrings.onboarding;
+
+    // Data onboarding diambil dari strings sesuai bahasa
+    final List<Map<String, String>> pages = [
+      {'title': lang.s(ob, 'title0'), 'subtitle': lang.s(ob, 'sub0')},
+      {'title': lang.s(ob, 'title1'), 'subtitle': lang.s(ob, 'sub1')},
+      {'title': lang.s(ob, 'title2'), 'subtitle': lang.s(ob, 'sub2')},
+    ];
+
     return Scaffold(
       body: Stack(
         children: [
-          // =========================================================
-          // 1. BACKGROUND LAYER PALING BAWAH (GRADIENT)
-          // =========================================================
+          // Background
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -82,9 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             ),
           ),
 
-          // =========================================================
-          // 2. EFEK GLOW / BLUR LAYER DI TENGAH
-          // =========================================================
+          // Glow
           Positioned.fill(
             child: Align(
               alignment: const Alignment(0.0, -0.2),
@@ -110,9 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             ),
           ),
 
-          // =========================================================
-          // 3. KONTEN UTAMA
-          // =========================================================
+          // Konten
           SafeArea(
             child: Column(
               children: [
@@ -149,7 +129,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
-                                _onboardingData[_currentPage]["title"]!,
+                                pages[_currentPage]['title']!,
                                 textAlign: TextAlign.center,
                                 maxLines: 1,
                                 softWrap: false,
@@ -163,7 +143,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              _onboardingData[_currentPage]["subtitle"]!,
+                              pages[_currentPage]['subtitle']!,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontFamily: 'Inter',
@@ -178,16 +158,18 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
                       const SizedBox(height: 32),
 
+                      // Dot indicator
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _buildDot(isActive: _currentPage == 0),
-                          const SizedBox(width: 8),
-                          _buildDot(isActive: _currentPage == 1),
-                          const SizedBox(width: 8),
-                          _buildDot(isActive: _currentPage == 2),
-                        ],
+                        children: List.generate(
+                          3,
+                          (i) => Padding(
+                            padding: EdgeInsets.only(left: i == 0 ? 0 : 8),
+                            child: _buildDot(isActive: _currentPage == i),
+                          ),
+                        ),
                       ),
+
                       const SizedBox(height: 40),
 
                       SizedBox(
@@ -202,7 +184,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                             shape: const StadiumBorder(),
                           ),
                           child: Text(
-                            _currentPage == 2 ? 'mulai sekarang' : 'next',
+                            _currentPage == 2
+                                ? lang.s(ob, 'start')
+                                : lang.s(ob, 'next'),
                             style: const TextStyle(
                               fontFamily: 'Inter',
                               fontSize: 18,
@@ -227,7 +211,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       return Stack(
         key: const ValueKey(0),
         children: [
-          // --- WAYANG KIRI (Muncul dari Kanan ke Kiri) ---
           Positioned(
             left: -70,
             top: 100,
@@ -237,7 +220,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               duration: const Duration(milliseconds: 800),
               curve: Curves.easeOutCubic,
               child: AnimatedSlide(
-                // Geser dari offset X=+1.5 (kanan layar) menuju 0 (posisi asli)
                 offset: _startAnimation ? Offset.zero : const Offset(-1.5, 0),
                 duration: const Duration(milliseconds: 800),
                 curve: Curves.easeOutCubic,
@@ -252,8 +234,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               ),
             ),
           ),
-
-          // --- WAYANG KANAN (Muncul dari Kiri ke Kanan) ---
           Positioned(
             right: 25,
             top: 180,
@@ -263,7 +243,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               duration: const Duration(milliseconds: 800),
               curve: Curves.easeOutCubic,
               child: AnimatedSlide(
-                // Geser dari offset X=-1.5 (kiri layar) menuju 0 (posisi asli)
                 offset: _startAnimation ? Offset.zero : const Offset(1.5, 0),
                 duration: const Duration(milliseconds: 800),
                 curve: Curves.easeOutCubic,
@@ -287,12 +266,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
           tween: Tween<double>(begin: 0.0, end: 1.0),
           duration: const Duration(milliseconds: 700),
           curve: Curves.easeOutBack,
-          builder: (context, value, child) {
-            return Opacity(
-              opacity: value.clamp(0.0, 1.0),
-              child: Transform.scale(scale: value, child: child),
-            );
-          },
+          builder: (_, value, child) => Opacity(
+            opacity: value.clamp(0.0, 1.0),
+            child: Transform.scale(scale: value, child: child),
+          ),
           child: Image.asset(
             'assets/images/keris_sakti.png',
             height: 400,
@@ -307,12 +284,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
           tween: Tween<double>(begin: 0.0, end: 1.0),
           duration: const Duration(milliseconds: 700),
           curve: Curves.easeOutBack,
-          builder: (context, value, child) {
-            return Opacity(
-              opacity: value.clamp(0.0, 1.0),
-              child: Transform.scale(scale: value, child: child),
-            );
-          },
+          builder: (_, value, child) => Opacity(
+            opacity: value.clamp(0.0, 1.0),
+            child: Transform.scale(scale: value, child: child),
+          ),
           child: Image.asset(
             'assets/images/gamelan.png',
             height: 350,

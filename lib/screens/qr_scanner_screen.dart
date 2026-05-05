@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'ar_view_screen.dart';
 import '../config/supabase_config.dart';
+import '../provider/language_provider.dart';
 
 class QRScannerScreen extends StatefulWidget {
   const QRScannerScreen({super.key});
@@ -10,151 +11,175 @@ class QRScannerScreen extends StatefulWidget {
   State<QRScannerScreen> createState() => _QRScannerScreenState();
 }
 
-class _QRScannerScreenState extends State<QRScannerScreen> {
+// ← LanguageAware agar appbar & hint ikut bahasa
+class _QRScannerScreenState extends State<QRScannerScreen> with LanguageAware {
   bool _isNavigating = false;
 
-  /// Mapping QR Code → data koleksi (termasuk deskripsi untuk popup info)
   static final Map<String, Map<String, String>> _koleksiMap = {
-    '01-wayang-cepot': {
-      'modelUrl': SupabaseConfig.getModelUrl('wayang_cepot.glb'),
-      'fileName': 'topeng_panji.glb',
-      'modelName': 'Topeng Panji',
+    '01-SI-UNYIL': {
+      'modelUrl': SupabaseConfig.getModelUrl('si_unyil.glb'),
+      'fileName': 'si_unyil.glb',
+      'modelName': 'Si Unyil',
       'deskripsi':
-          'Topeng Panji adalah topeng tradisional Jawa yang melambangkan kelembutan, ketenangan, dan kesempurnaan. Berwarna putih bersih sebagai simbol jiwa yang suci dan mulia dalam kisah Panji Asmarabangun.',
+          'Si Unyil adalah karakter utama ciptaan Drs. Suyadi (Pak Raden) yang tayang sejak 1981. Ia merepresentasikan anak sekolah dasar di Indonesia yang lugu, ceria, selalu ingin tahu, dan mengajarkan nilai-nilai moral dalam kehidupan sehari-hari.',
+      'deskripsiEn':
+          'Si Unyil is the main character created by Drs. Suyadi (Pak Raden), airing since 1981. He represents an innocent, cheerful, and curious Indonesian elementary school child, teaching moral values in daily life.',
     },
-    'KOL-02-KERIS': {
-      'modelUrl': SupabaseConfig.getModelUrl('keris_pusaka.glb'),
-      'fileName': 'keris_pusaka.glb',
-      'modelName': 'Keris Pusaka',
+    '02-UCRIT': {
+      'modelUrl': SupabaseConfig.getModelUrl('ucrit.glb'),
+      'fileName': 'ucrit.glb',
+      'modelName': 'Ucrit',
       'deskripsi':
-          'Keris adalah senjata tikam golongan belati dengan bentuk bilah yang khas, berliku-liku seperti api. Dianggap memiliki kekuatan magis dan merupakan warisan budaya yang diakui UNESCO sejak 2005.',
+          'Ucrit adalah salah satu sahabat karib Unyil yang beragama Katolik dan sering terlihat memakai kalung salib. Karakter ini sengaja diciptakan untuk merepresentasikan keberagaman sosial dan mengajarkan toleransi beragama sejak dini kepada anak-anak Indonesia.',
+      'deskripsiEn':
+          'Ucrit is one of Unyil\'s best friends who is Catholic and often seen wearing a cross necklace. This character was specifically created to represent social diversity and teach religious tolerance from an early age to Indonesian children.',
     },
-    'KOL-03-GONG': {
-      'modelUrl': SupabaseConfig.getModelUrl('gong_gamelan.glb'),
-      'fileName': 'gong_gamelan.glb',
-      'modelName': 'Gong Gamelan',
+    '03-USRO': {
+      'modelUrl': SupabaseConfig.getModelUrl('usro.glb'),
+      'fileName': 'usro.glb',
+      'modelName': 'Usro',
       'deskripsi':
-          'Gong adalah instrumen musik pukul tradisional Jawa yang terbuat dari perunggu. Bunyi "gong" yang bergema menandai akhir sebuah gongan (siklus) dalam musik gamelan Jawa dan Bali.',
+          'Usro adalah teman sepermainan Unyil yang sangat khas dengan peci miringnya. Ia dikenal memiliki sifat yang sangat setia kawan dan sering kali menjadi penengah atau teman setia dalam berbagai petualangan di desa.',
+      'deskripsiEn':
+          'Usro is Unyil\'s playmate, known for his distinctive tilted cap (peci). He is recognized for his deep loyalty to his friends and often acts as a mediator or a faithful companion in their village adventures.',
     },
-    'KOL-04-ARJUNA': {
-      'modelUrl': SupabaseConfig.getModelUrl('wayang_arjuna.glb'),
-      'fileName': 'wayang_arjuna.glb',
-      'modelName': 'Wayang Kulit Arjuna',
+    '04-PAK-OGAH': {
+      'modelUrl': SupabaseConfig.getModelUrl('pak_ogah.glb'),
+      'fileName': 'pak_ogah.glb',
+      'modelName': 'Pak Ogah',
       'deskripsi':
-          'Arjuna adalah tokoh pewayangan berparas tampan, berhati lembut, dan ahli memanah. Putra ketiga Pandawa ini dikenal sebagai kesatria terbaik dalam epik Mahabharata.',
+          'Karakter tunakarya ikonik berkepala plontos yang terkenal dengan jargon \'Cepek dulu dong\'. Pak Ogah secara spesifik diciptakan sebagai representasi sosial tentang pengangguran pemalas yang selalu mencari jalan pintas untuk mendapatkan uang.',
+      'deskripsiEn':
+          'An iconic bald, unemployed character famous for his catchphrase \'Cepek dulu dong\' (Give me 100 rupiahs first). Pak Ogah was specifically created as a social representation of a lazy unemployed person always looking for shortcuts to get money.',
     },
-    'KOL-05-CEPOT': {
-      'modelUrl': SupabaseConfig.getModelUrl('wayang_cepot.glb'),
-      'fileName': 'wayang_cepot.glb',
-      'modelName': 'Wayang Golek Cepot',
+    '05-PAK-RADEN': {
+      'modelUrl': SupabaseConfig.getModelUrl('pak_raden.glb'),
+      'fileName': 'pak_raden.glb',
+      'modelName': 'Pak Raden',
       'deskripsi':
-          'Cepot atau Astrajingga adalah karakter punakawan khas Sunda yang jenaka dan humoris. Ia adalah anak sulung Semar, dengan wajah merah dan sifat yang polos namun penuh kebijaksanaan tersembunyi.',
+          'Pak Raden adalah karakter keturunan bangsawan Jawa berpakaian beskap yang kaku, pelit, serta mudah marah. Karakter ini disuarakan dan diciptakan langsung oleh mendiang Drs. Suyadi sebagai karikatur golongan priyayi tua yang konservatif.',
+      'deskripsiEn':
+          'Pak Raden is a Javanese noble descendant character dressed in a traditional beskap, known for being stiff, stingy, and short-tempered. This character was voiced and created directly by the late Drs. Suyadi as a caricature of conservative elder nobles.',
     },
-    'KOL-06-BATIK': {
-      'modelUrl': SupabaseConfig.getModelUrl('batik_megamendung.glb'),
-      'fileName': 'batik_megamendung.glb',
-      'modelName': 'Batik Megamendung',
+    '06-MBOK-BARIAH': {
+      'modelUrl': SupabaseConfig.getModelUrl('mbok_bariah.glb'),
+      'fileName': 'mbok_bariah.glb',
+      'modelName': 'Mbok Bariah',
       'deskripsi':
-          'Megamendung adalah motif batik khas Cirebon berbentuk awan bertingkat yang berasal dari pengaruh budaya Tiongkok. Motif ini melambangkan kesabaran dan ketenangan jiwa.',
+          'Mbok Bariah adalah tokoh penjual rujak asal Madura dengan logat bicara kental yang sangat khas. Karakter ini melambangkan kegigihan, semangat pantang menyerah, dan kerja keras yang menjadi identitas para pedagang perantauan.',
+      'deskripsiEn':
+          'Mbok Bariah is a rujak seller from Madura with a very distinctive thick accent. This character symbolizes persistence, an unyielding spirit, and the hard work that forms the identity of migrating traders.',
     },
-    'KOL-07-MAHKOTA': {
-      'modelUrl': SupabaseConfig.getModelUrl('mahkota_binokasih.glb'),
-      'fileName': 'mahkota_binokasih.glb',
-      'modelName': 'Mahkota Binokasih',
+    '07-MEILANI': {
+      'modelUrl': SupabaseConfig.getModelUrl('meilani.glb'),
+      'fileName': 'meilani.glb',
+      'modelName': 'Meilani',
       'deskripsi':
-          'Mahkota Binokasih adalah mahkota peninggalan Kerajaan Sunda Pajajaran yang dianggap sakral. Mahkota ini dipercaya sebagai simbol legitimasi kekuasaan raja-raja Sunda.',
+          'Meilani adalah karakter anak perempuan keturunan Tionghoa berwajah manis yang memiliki sifat ramah dan pintar. Sosok ini didesain sebagai representasi asimilasi budaya, kebaikan hati, serta harmoni kehidupan antar etnis di Indonesia.',
+      'deskripsiEn':
+          'Meilani is a sweet-faced girl of Chinese descent who is friendly and smart. This figure is designed as a representation of cultural assimilation, kindness, and inter-ethnic harmony in Indonesia.',
     },
-    'KOL-08-LUDING': {
-      'modelUrl': SupabaseConfig.getModelUrl('kuda_lumping.glb'),
-      'fileName': 'kuda_lumping.glb',
-      'modelName': 'Kuda Lumping',
+    '08-CUPLIS': {
+      'modelUrl': SupabaseConfig.getModelUrl('cuplis.glb'),
+      'fileName': 'cuplis.glb',
+      'modelName': 'Cuplis',
       'deskripsi':
-          'Kuda Lumping adalah properti tari tradisional berbentuk tiruan kuda yang terbuat dari anyaman bambu atau kulit. Pertunjukannya dikenal dengan atraksi kesurupan yang mistis.',
+          'Cuplis adalah teman bermain Unyil yang sangat identik dengan kepala botaknya. Ia sering digambarkan sebagai anak yang periang, terkadang sedikit usil, namun kehadirannya selalu melengkapi dinamika persahabatan anak-anak di desa tersebut.',
+      'deskripsiEn':
+          'Cuplis is Unyil\'s playmate, highly recognized by his bald head. He is often depicted as a cheerful and sometimes slightly mischievous child, but his presence always completes the dynamic of children\'s friendships in the village.',
     },
-    'KOL-09-ANGKLUNG': {
-      'modelUrl': SupabaseConfig.getModelUrl('angklung_buhun.glb'),
-      'fileName': 'angklung_buhun.glb',
-      'modelName': 'Angklung Buhun',
+    '09-PAK-ABLEH': {
+      'modelUrl': SupabaseConfig.getModelUrl('pak_ableh.glb'),
+      'fileName': 'pak_ableh.glb',
+      'modelName': 'Pak Ableh',
       'deskripsi':
-          'Angklung Buhun adalah alat musik bambu kuno khas masyarakat Baduy yang digunakan dalam ritual adat. Berbeda dari angklung modern, Buhun hanya dimainkan pada upacara sakral Seren Taun.',
+          'Pak Ableh adalah teman akrab sekaligus pengikut setia Pak Ogah yang juga tidak memiliki pekerjaan tetap. Ia digambarkan memiliki karakter yang terkesan lamban dan kurang cerdas, sering menemani Pak Ogah nongkrong di pos ronda.',
+      'deskripsiEn':
+          'Pak Ableh is a close friend and loyal follower of Pak Ogah, who also does not have a steady job. He is portrayed as having a rather slow and less intelligent character, often accompanying Pak Ogah at the neighborhood guard post.',
     },
-    'KOL-10-BEBER': {
-      'modelUrl': SupabaseConfig.getModelUrl('wayang_beber.glb'),
-      'fileName': 'wayang_beber.glb',
-      'modelName': 'Wayang Beber',
+    '10-SEMAR': {
+      'modelUrl': SupabaseConfig.getModelUrl('semar.glb'),
+      'fileName': 'semar.glb',
+      'modelName': 'Semar',
       'deskripsi':
-          'Wayang Beber adalah seni pertunjukan wayang tertua di Jawa, berbentuk gulungan lukisan bergambar cerita. Dalang bercerita sambil membeberkan (membuka) gulungan gambar satu per satu.',
+          'Semar adalah tokoh utama dalam kelompok Punakawan pewayangan Jawa dan Sunda yang diyakini sebagai penjelmaan dewa (Batara Ismaya). Ia melambangkan kearifan, kebijaksanaan murni, dan merupakan figur pamong spiritual bagi para ksatria.',
+      'deskripsiEn':
+          'Semar is the main figure in the Punakawan group of Javanese and Sundanese puppetry, believed to be the incarnation of a god (Batara Ismaya). He symbolizes wisdom, pure sagacity, and acts as a spiritual guardian figure for the knights.',
     },
-    'KOL-11-TOMBAK': {
-      'modelUrl': SupabaseConfig.getModelUrl('tombak_trisula.glb'),
-      'fileName': 'tombak_trisula.glb',
-      'modelName': 'Tombak Trisula',
+    '11-CEPOT': {
+      'modelUrl': SupabaseConfig.getModelUrl('cepot.glb'),
+      'fileName': 'cepot.glb',
+      'modelName': 'Cepot',
       'deskripsi':
-          'Tombak Trisula adalah senjata tradisional bermata tiga yang melambangkan kekuatan Dewa Siwa. Digunakan sebagai simbol kekuasaan dan perlindungan kerajaan-kerajaan Hindu di Nusantara.',
+          'Astrajingga atau lebih dikenal dengan nama Cepot adalah tokoh wayang golek Sunda berwajah merah. Ia sangat dikenal karena sifatnya yang humoris, jenaka, dan sering menjadi media dalang untuk menyampaikan kritik sosial secara ringan.',
+      'deskripsiEn':
+          'Astrajingga, better known as Cepot, is a red-faced Sundanese wooden puppet character. He is widely known for his humorous and witty nature, often serving as the puppeteer\'s medium to deliver social criticism lightly.',
     },
-    'KOL-12-KELANA': {
-      'modelUrl': SupabaseConfig.getModelUrl('topeng_kelana.glb'),
-      'fileName': 'topeng_kelana.glb',
-      'modelName': 'Topeng Kelana',
+    '12-DAWALA': {
+      'modelUrl': SupabaseConfig.getModelUrl('dawala.glb'),
+      'fileName': 'dawala.glb',
+      'modelName': 'Dawala',
       'deskripsi':
-          'Topeng Kelana berwarna merah menyala melambangkan amarah, nafsu, dan angkara murka. Ia adalah raja jahat dalam pertunjukan topeng Cirebon yang mengejar Dewi Sekartaji.',
+          'Dawala adalah adik dari Cepot dalam jagat wayang golek Sunda yang memiliki ciri fisik berupa hidung mancung ke bawah. Ia memiliki sifat yang lebih tenang, sabar, dan selalu setia mendampingi saudaranya dalam berbagai situasi.',
+      'deskripsiEn':
+          'Dawala is Cepot\'s younger brother in the Sundanese puppet universe, physically characterized by a downward-pointing nose. He has a calmer and more patient nature, always loyally accompanying his brother in various situations.',
     },
-    'KOL-13-KENONG': {
-      'modelUrl': SupabaseConfig.getModelUrl('gamelan_kenong.glb'),
-      'fileName': 'gamelan_kenong.glb',
-      'modelName': 'Gamelan Kenong',
+    '13-GARENG': {
+      'modelUrl': SupabaseConfig.getModelUrl('gareng.glb'),
+      'fileName': 'gareng.glb',
+      'modelName': 'Gareng',
       'deskripsi':
-          'Kenong adalah alat musik pukul berupa gong kecil yang duduk di atas tali dalam gamelan Jawa. Berfungsi sebagai penegas irama dan penanda frase musikal dalam setiap gongan.',
+          'Gareng adalah tokoh Punakawan dengan ciri khas fisik tidak sempurna seperti mata juling dan kaki pincang. Ketidaksempurnaan ini secara filosofis merupakan simbolisasi dari sifat kehati-hatian dalam bertindak, melihat, dan melangkah di kehidupan.',
+      'deskripsiEn':
+          'Gareng is a Punakawan character with distinctive physical imperfections such as crossed eyes and a limp. Philosophically, these imperfections symbolize caution in taking action, seeing, and stepping through life.',
     },
-    'KOL-14-GANESHA': {
-      'modelUrl': SupabaseConfig.getModelUrl('arca_ganesha.glb'),
-      'fileName': 'arca_ganesha.glb',
-      'modelName': 'Arca Ganesha',
+    '14-AMIR-HAMZAH': {
+      'modelUrl': SupabaseConfig.getModelUrl('amir_hamzah.glb'),
+      'fileName': 'amir_hamzah.glb',
+      'modelName': 'Amir Hamzah',
       'deskripsi':
-          'Arca Ganesha adalah patung dewa berkepala gajah, pelindung ilmu pengetahuan dan pembuang rintangan dalam kepercayaan Hindu. Banyak ditemukan di situs-situs candi di Jawa dan Bali.',
+          'Amir Hamzah adalah tokoh sentral dalam pertunjukan Wayang Golek Menak yang diadaptasi dari literatur epik bernapaskan Islam. Sosoknya melambangkan keberanian tempur, ketangguhan, dan keteguhan pahlawan dalam menyebarkan nilai kebaikan.',
+      'deskripsiEn':
+          'Amir Hamzah is the central figure in the Wayang Golek Menak performance, adapted from Islamic epic literature. His figure symbolizes combat bravery, resilience, and the hero\'s steadfastness in spreading the values of goodness.',
     },
-    'KOL-15-BLENCONG': {
-      'modelUrl': SupabaseConfig.getModelUrl('blencong.glb'),
-      'fileName': 'blencong.glb',
-      'modelName': 'Blencong',
+    '15-PANJI-ASMARABANGUN': {
+      'modelUrl': SupabaseConfig.getModelUrl('panji_asmarabangun.glb'),
+      'fileName': 'panji_asmarabangun.glb',
+      'modelName': 'Panji Asmarabangun',
       'deskripsi':
-          'Blencong adalah lampu minyak gantung berbentuk khas yang digunakan khusus dalam pertunjukan wayang kulit. Cahayanya menciptakan bayangan dramatik pada kelir (layar putih) di belakang wayang.',
-    },
-
-    // Backward compatible dengan QR lama
-    '01-wayang-cepot': {
-      'modelUrl': SupabaseConfig.getModelUrl('wayang_cepot.glb'),
-      'fileName': 'wayang_cepot.glb',
-      'modelName': 'Wayang Golek Cepot',
-      'deskripsi':
-          'Cepot atau Astrajingga adalah karakter punakawan khas Sunda yang jenaka dan humoris. Ia adalah anak sulung Semar, dengan wajah merah dan sifat yang polos namun penuh kebijaksanaan tersembunyi.',
+          'Panji Asmarabangun adalah tokoh utama dalam siklus Cerita Panji kuno nusantara sebagai pewaris takhta Kerajaan Jenggala. Ia merepresentasikan sosok ksatria luhur ideal yang sangat halus budi pekertinya, berwibawa, berani, dan romantis.',
+      'deskripsiEn':
+          'Panji Asmarabangun is the main character in the ancient archipelago\'s Panji cycle tales as the heir to the Jenggala Kingdom throne. He represents the ideal noble knight who is extremely refined in character, authoritative, brave, and romantic.',
     },
   };
 
   void _handleScan(String rawValue) {
     if (_isNavigating) return;
-
     final koleksi = _koleksiMap[rawValue];
 
     if (koleksi != null) {
       setState(() => _isNavigating = true);
-      Navigator.pushReplacement(
+
+      Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ArViewScreen(
+          builder: (_) => ArViewScreen(
             modelUrl: koleksi['modelUrl']!,
             fileName: koleksi['fileName']!,
             modelName: koleksi['modelName']!,
-            deskripsi: koleksi['deskripsi'], // ← kirim deskripsi ke popup
+            deskripsi: koleksi['deskripsi'],
+            deskripsiEn: koleksi['deskripsiEn'],
           ),
         ),
       ).then((_) {
+        // Reset flag saat user kembali dari ArViewScreen ke scanner
         if (mounted) setState(() => _isNavigating = false);
       });
     } else {
+      final sc = AppStrings.scanner;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('QR tidak dikenal: "$rawValue"'),
+          content: Text('${lp.s(sc, 'unknown')}: "$rawValue"'),
           backgroundColor: Colors.red[700],
           duration: const Duration(seconds: 2),
         ),
@@ -164,11 +189,13 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final sc = AppStrings.scanner;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Scan QR Koleksi',
-          style: TextStyle(fontFamily: 'Inter'),
+        title: Text(
+          lp.s(sc, 'appbar'),
+          style: const TextStyle(fontFamily: 'Inter'),
         ),
         backgroundColor: const Color(0xFF1B233A),
         foregroundColor: Colors.white,
@@ -186,6 +213,8 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
               }
             },
           ),
+
+          // Kotak scan overlay
           Center(
             child: Container(
               width: 250,
@@ -199,14 +228,16 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
               ),
             ),
           ),
-          const Positioned(
+
+          // Teks hint bawah
+          Positioned(
             bottom: 40,
             left: 0,
             right: 0,
             child: Text(
-              'Arahkan kamera ke QR Code Koleksi',
+              lp.s(sc, 'hint'),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
