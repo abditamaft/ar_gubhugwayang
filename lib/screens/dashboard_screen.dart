@@ -123,6 +123,36 @@ class _DashboardScreenState extends State<DashboardScreen>
       deskripsiSingkat: "Kesatria luhur yang melambangkan kehalusan.",
       deskripsiSingkatEn: "Noble knight who symbolizes refinement.",
     ),
+    Koleksi(
+      nama: "Prabu Cakrabuana",
+      imagePath: 'assets/images/koleksi_16.png',
+      deskripsiSingkat: "Anak Semar yang melambangkan humor.",
+      deskripsiSingkatEn: "Semar's son who symbolizes humor.",
+    ),
+    Koleksi(
+      nama: "Sie Djin Koei Tjeng Tang ",
+      imagePath: 'assets/images/koleksi_17.png',
+      deskripsiSingkat: "Saudara Cepot yang melambangkan kesabaran.",
+      deskripsiSingkatEn: "Cepot's brother who symbolizes patience.",
+    ),
+    Koleksi(
+      nama: "Panglima So Poo Tong",
+      imagePath: 'assets/images/koleksi_18.png',
+      deskripsiSingkat: "Anak Semar yang melambangkan kehati-hatian.",
+      deskripsiSingkatEn: "Semar's son who symbolizes caution.",
+    ),
+    Koleksi(
+      nama: "Wayang Golek Lenong Betawi",
+      imagePath: 'assets/images/koleksi_19.png',
+      deskripsiSingkat: "Pahlawan Islam yang melambangkan keberanian.",
+      deskripsiSingkatEn: "Islamic hero who symbolizes bravery.",
+    ),
+    Koleksi(
+      nama: "Wayang Golek Sesek",
+      imagePath: 'assets/images/koleksi_20.png',
+      deskripsiSingkat: "Kesatria luhur yang melambangkan kehalusan.",
+      deskripsiSingkatEn: "Noble knight who symbolizes refinement.",
+    ),
   ];
 
   List<Widget> _cards = [];

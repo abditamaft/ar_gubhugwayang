@@ -151,6 +151,51 @@ class _QRScannerScreenState extends State<QRScannerScreen> with LanguageAware {
       'deskripsiEn':
           'Panji Asmarabangun is the main character in the ancient archipelago\'s Panji cycle tales as the heir to the Jenggala Kingdom throne. He represents the ideal noble knight who is extremely refined in character, authoritative, brave, and romantic.',
     },
+    '16-PRABU-CAKRABUANA': {
+      'modelUrl': SupabaseConfig.getModelUrl('prabu_cakrabuana.glb'),
+      'fileName': 'prabu_cakrabuana.glb',
+      'modelName': 'Prabu Cakrabuana',
+      'deskripsi':
+          'Astrajingga atau lebih dikenal dengan nama Cepot adalah tokoh wayang golek Sunda berwajah merah. Ia sangat dikenal karena sifatnya yang humoris, jenaka, dan sering menjadi media dalang untuk menyampaikan kritik sosial secara ringan.',
+      'deskripsiEn':
+          'Astrajingga, better known as Cepot, is a red-faced Sundanese wooden puppet character. He is widely known for his humorous and witty nature, often serving as the puppeteer\'s medium to deliver social criticism lightly.',
+    },
+    '17-SIE-DJIN-KOEI-TJENG-TANG': {
+      'modelUrl': SupabaseConfig.getModelUrl('sie_djin_koei_tjeng_tang.glb'),
+      'fileName': 'sie_djin_koei_tjeng_tang.glb',
+      'modelName': 'Sie Djin Koei Tjeng Tang',
+      'deskripsi':
+          'Dawala adalah adik dari Cepot dalam jagat wayang golek Sunda yang memiliki ciri fisik berupa hidung mancung ke bawah. Ia memiliki sifat yang lebih tenang, sabar, dan selalu setia mendampingi saudaranya dalam berbagai situasi.',
+      'deskripsiEn':
+          'Dawala is Cepot\'s younger brother in the Sundanese puppet universe, physically characterized by a downward-pointing nose. He has a calmer and more patient nature, always loyally accompanying his brother in various situations.',
+    },
+    '18-PANGLIMA-SO-POO-TONG': {
+      'modelUrl': SupabaseConfig.getModelUrl('panglima_so_poo_tong.glb'),
+      'fileName': 'panglima_so_poo_tong.glb',
+      'modelName': 'Panglima So Poo Tong',
+      'deskripsi':
+          'Gareng adalah tokoh Punakawan dengan ciri khas fisik tidak sempurna seperti mata juling dan kaki pincang. Ketidaksempurnaan ini secara filosofis merupakan simbolisasi dari sifat kehati-hatian dalam bertindak, melihat, dan melangkah di kehidupan.',
+      'deskripsiEn':
+          'Gareng is a Punakawan character with distinctive physical imperfections such as crossed eyes and a limp. Philosophically, these imperfections symbolize caution in taking action, seeing, and stepping through life.',
+    },
+    '19-WAYANG-GOLEK-LENONG-BETAWI': {
+      'modelUrl': SupabaseConfig.getModelUrl('wayang_golek_lenong_betawi.glb'),
+      'fileName': 'wayang_golek_lenong_betawi.glb',
+      'modelName': 'Wayang Golek Lenong Betawi',
+      'deskripsi':
+          'Amir Hamzah adalah tokoh sentral dalam pertunjukan Wayang Golek Menak yang diadaptasi dari literatur epik bernapaskan Islam. Sosoknya melambangkan keberanian tempur, ketangguhan, dan keteguhan pahlawan dalam menyebarkan nilai kebaikan.',
+      'deskripsiEn':
+          'Amir Hamzah is the central figure in the Wayang Golek Menak performance, adapted from Islamic epic literature. His figure symbolizes combat bravery, resilience, and the hero\'s steadfastness in spreading the values of goodness.',
+    },
+    '20-WAYANG-GOLEK-SESEK': {
+      'modelUrl': SupabaseConfig.getModelUrl('wayang_golek_sesek.glb'),
+      'fileName': 'wayang_golek_sesek.glb',
+      'modelName': 'Wayang Golek Sesek',
+      'deskripsi':
+          'Panji Asmarabangun adalah tokoh utama dalam siklus Cerita Panji kuno nusantara sebagai pewaris takhta Kerajaan Jenggala. Ia merepresentasikan sosok ksatria luhur ideal yang sangat halus budi pekertinya, berwibawa, berani, dan romantis.',
+      'deskripsiEn':
+          'Panji Asmarabangun is the main character in the ancient archipelago\'s Panji cycle tales as the heir to the Jenggala Kingdom throne. He represents the ideal noble knight who is extremely refined in character, authoritative, brave, and romantic.',
+    },
   };
 
   void _handleScan(String rawValue) {
