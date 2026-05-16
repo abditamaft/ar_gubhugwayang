@@ -137,6 +137,27 @@ class AppStrings {
     },
   };
 
+  static const Map<String, Map<String, String>> infoMuseum = {
+    'id': {
+      'appbar_title': 'Informasi Museum',
+      'hero_title': 'Informasi Museum Gubug\nWayang Mojokerto',
+      'tagline': 'Pilih kategori informasi di bawah',
+      'menu_tentang_app': 'Tentang\nAplikasi',
+      'menu_fitur': 'Fitur\nAplikasi',
+      'menu_tujuan': 'Tujuan\nPengembangan',
+      'menu_museum': 'Tentang\nMuseum',
+    },
+    'en': {
+      'appbar_title': 'Museum Information',
+      'hero_title': 'Information of Gubug\nWayang Mojokerto Museum',
+      'tagline': 'Select an information category below',
+      'menu_tentang_app': 'About\nApp',
+      'menu_fitur': 'App\nFeatures',
+      'menu_tujuan': 'Development\nGoals',
+      'menu_museum': 'About\nMuseum',
+    },
+  };
+
   static String get(
     Map<String, Map<String, String>> map,
     String lang,

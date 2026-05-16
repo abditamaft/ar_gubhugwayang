@@ -4,6 +4,7 @@ import 'package:appinio_swiper/appinio_swiper.dart';
 import 'qr_scanner_screen.dart';
 import '../provider/language_provider.dart';
 import 'my_koleksi_screen.dart';
+import 'info_museum_screen.dart';
 
 class Koleksi {
   final String nama;
@@ -303,7 +304,7 @@ class _DashboardScreenState extends State<DashboardScreen>
           // Logo Kiri
           ClipOval(
             child: Image.asset(
-              'assets/images/polije.png',
+              'assets/images/polinema.png',
               height: 40,
               width: 40,
               fit: BoxFit.cover,
@@ -548,34 +549,34 @@ class _DashboardScreenState extends State<DashboardScreen>
 
                 _buildDivider(),
 
-                // ── 3. Tombol AR (label teks)
-                GestureDetector(
+                // ── 3. Tombol Info Museum
+                _buildIslandButton(
+                  icon: Icons.museum_rounded,
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => const QRScannerScreen(),
+                      PageRouteBuilder(
+                        pageBuilder: (_, animation, __) =>
+                            const InfoMuseumScreen(),
+                        transitionsBuilder: (_, animation, __, child) {
+                          return SlideTransition(
+                            position:
+                                Tween<Offset>(
+                                  begin: const Offset(1.0, 0.0),
+                                  end: Offset.zero,
+                                ).animate(
+                                  CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeOutCubic,
+                                  ),
+                                ),
+                            child: child,
+                          );
+                        },
+                        transitionDuration: const Duration(milliseconds: 400),
                       ),
                     );
                   },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Text(
-                      'AR',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
                 ),
 
                 _buildDivider(),
