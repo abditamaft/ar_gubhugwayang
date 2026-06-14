@@ -21,180 +21,180 @@ class _QRScannerScreenState extends State<QRScannerScreen> with LanguageAware {
       'fileName': 'si_unyil.glb',
       'modelName': 'Si Unyil',
       'deskripsi':
-          'Si Unyil adalah karakter utama ciptaan Drs. Suyadi (Pak Raden) yang tayang sejak 1981. Ia merepresentasikan anak sekolah dasar di Indonesia yang lugu, ceria, selalu ingin tahu, dan mengajarkan nilai-nilai moral dalam kehidupan sehari-hari.',
+          'Anak laki-laki yang menjadi tokoh utama. Unyil dikenal cerdas, baik hati, rajin, suka menolong, dan sering menjadi teladan bagi teman-temannya.',
       'deskripsiEn':
-          'Si Unyil is the main character created by Drs. Suyadi (Pak Raden), airing since 1981. He represents an innocent, cheerful, and curious Indonesian elementary school child, teaching moral values in daily life.',
+          'A young boy who serves as the main character of the series. Unyil is known for being intelligent, kind-hearted, diligent, helpful, and often acts as a role model for his friends.',
     },
     '02-UCRIT': {
       'modelUrl': SupabaseConfig.getModelUrl('ucrit.glb'),
       'fileName': 'ucrit.glb',
       'modelName': 'Ucrit',
       'deskripsi':
-          'Ucrit adalah salah satu sahabat karib Unyil yang beragama Katolik dan sering terlihat memakai kalung salib. Karakter ini sengaja diciptakan untuk merepresentasikan keberagaman sosial dan mengajarkan toleransi beragama sejak dini kepada anak-anak Indonesia.',
+          'Sahabat Unyil yang bertubuh kecil dan kurus. Ucrit dikenal polos, lugu, serta sering menimbulkan kelucuan dalam berbagai situasi.',
       'deskripsiEn':
-          'Ucrit is one of Unyil\'s best friends who is Catholic and often seen wearing a cross necklace. This character was specifically created to represent social diversity and teach religious tolerance from an early age to Indonesian children.',
+          'Unyil\'s friend, who is small and thin. Ucrit is known for being innocent, naïve, and often brings humor to various situations.',
     },
     '03-USRO': {
       'modelUrl': SupabaseConfig.getModelUrl('usro.glb'),
       'fileName': 'usro.glb',
       'modelName': 'Usro',
       'deskripsi':
-          'Usro adalah teman sepermainan Unyil yang sangat khas dengan peci miringnya. Ia dikenal memiliki sifat yang sangat setia kawan dan sering kali menjadi penengah atau teman setia dalam berbagai petualangan di desa.',
+          'Teman Unyil yang memiliki sifat baik dan suka bekerja sama. Usro sering ikut dalam berbagai kegiatan dan petualangan bersama teman-temannya.',
       'deskripsiEn':
-          'Usro is Unyil\'s playmate, known for his distinctive tilted cap (peci). He is recognized for his deep loyalty to his friends and often acts as a mediator or a faithful companion in their village adventures.',
+          'One of Unyil\’s friends who is kind and cooperative. Usro frequently takes part in various activities and adventures with his friends.',
     },
     '04-PAK-OGAH': {
       'modelUrl': SupabaseConfig.getModelUrl('pak_ogah.glb'),
       'fileName': 'pak_ogah.glb',
       'modelName': 'Pak Ogah',
       'deskripsi':
-          'Karakter tunakarya ikonik berkepala plontos yang terkenal dengan jargon \'Cepek dulu dong\'. Pak Ogah secara spesifik diciptakan sebagai representasi sosial tentang pengangguran pemalas yang selalu mencari jalan pintas untuk mendapatkan uang.',
+          'Tokoh yang terkenal karena sifatnya yang malas dan sering meminta imbalan sebelum membantu orang lain. Kalimat khasnya adalah meminta “cepek dulu”',
       'deskripsiEn':
-          'An iconic bald, unemployed character famous for his catchphrase \'Cepek dulu dong\' (Give me 100 rupiahs first). Pak Ogah was specifically created as a social representation of a lazy unemployed person always looking for shortcuts to get money.',
+          'A character famous for his laziness and his habit of asking for payment before helping others. His trademark phrase involves requesting money first before offering assistance.',
     },
     '05-PAK-RADEN': {
       'modelUrl': SupabaseConfig.getModelUrl('pak_raden.glb'),
       'fileName': 'pak_raden.glb',
       'modelName': 'Pak Raden',
       'deskripsi':
-          'Pak Raden adalah karakter keturunan bangsawan Jawa berpakaian beskap yang kaku, pelit, serta mudah marah. Karakter ini disuarakan dan diciptakan langsung oleh mendiang Drs. Suyadi sebagai karikatur golongan priyayi tua yang konservatif.',
+          'Tokoh orang tua yang bijaksana, berwibawa, dan sering memberikan nasihat kepada anak-anak. Ia menjadi salah satu figur panutan dalam cerita.',
       'deskripsiEn':
-          'Pak Raden is a Javanese noble descendant character dressed in a traditional beskap, known for being stiff, stingy, and short-tempered. This character was voiced and created directly by the late Drs. Suyadi as a caricature of conservative elder nobles.',
+          'An elder figure who is wise, respected, and often gives advice to children. He serves as a role model within the story.',
     },
     '06-MBOK-BARIAH': {
       'modelUrl': SupabaseConfig.getModelUrl('mbok_bariah.glb'),
       'fileName': 'mbok_bariah.glb',
       'modelName': 'Mbok Bariah',
       'deskripsi':
-          'Mbok Bariah adalah tokoh penjual rujak asal Madura dengan logat bicara kental yang sangat khas. Karakter ini melambangkan kegigihan, semangat pantang menyerah, dan kerja keras yang menjadi identitas para pedagang perantauan.',
+          'Ibu yang ramah, penyayang, dan peduli terhadap lingkungan sekitar. Ia sering berinteraksi dengan warga kampung dalam berbagai kegiatan.',
       'deskripsiEn':
-          'Mbok Bariah is a rujak seller from Madura with a very distinctive thick accent. This character symbolizes persistence, an unyielding spirit, and the hard work that forms the identity of migrating traders.',
+          'A friendly and caring mother figure who is concerned about her community. She often interacts with the villagers in various activities.',
     },
     '07-MEILANI': {
       'modelUrl': SupabaseConfig.getModelUrl('meilani.glb'),
       'fileName': 'meilani.glb',
       'modelName': 'Meilani',
       'deskripsi':
-          'Meilani adalah karakter anak perempuan keturunan Tionghoa berwajah manis yang memiliki sifat ramah dan pintar. Sosok ini didesain sebagai representasi asimilasi budaya, kebaikan hati, serta harmoni kehidupan antar etnis di Indonesia.',
+          'Anak perempuan yang menjadi teman Unyil dan kawan-kawannya. Meilani dikenal sopan, ceria, dan aktif dalam berbagai kegiatan bersama teman-temannya.',
       'deskripsiEn':
-          'Meilani is a sweet-faced girl of Chinese descent who is friendly and smart. This figure is designed as a representation of cultural assimilation, kindness, and inter-ethnic harmony in Indonesia.',
+          'A young girl who is friends with Unyil and his companions. Meilani is known for being polite, cheerful, and actively involved in group activities.',
     },
     '08-CUPLIS': {
       'modelUrl': SupabaseConfig.getModelUrl('cuplis.glb'),
       'fileName': 'cuplis.glb',
       'modelName': 'Cuplis',
       'deskripsi':
-          'Cuplis adalah teman bermain Unyil yang sangat identik dengan kepala botaknya. Ia sering digambarkan sebagai anak yang periang, terkadang sedikit usil, namun kehadirannya selalu melengkapi dinamika persahabatan anak-anak di desa tersebut.',
+          'Anak laki-laki yang usil dan sering membuat kehebohan. Meski demikian, ia tetap menjadi bagian dari kelompok pertemanan di kampung.',
       'deskripsiEn':
-          'Cuplis is Unyil\'s playmate, highly recognized by his bald head. He is often depicted as a cheerful and sometimes slightly mischievous child, but his presence always completes the dynamic of children\'s friendships in the village.',
+          'A mischievous boy who often causes trouble and excitement. Despite this, he remains an important member of the group of friends.',
     },
     '09-PAK-ABLEH': {
       'modelUrl': SupabaseConfig.getModelUrl('pak_ableh.glb'),
       'fileName': 'pak_ableh.glb',
       'modelName': 'Pak Ableh',
       'deskripsi':
-          'Pak Ableh adalah teman akrab sekaligus pengikut setia Pak Ogah yang juga tidak memiliki pekerjaan tetap. Ia digambarkan memiliki karakter yang terkesan lamban dan kurang cerdas, sering menemani Pak Ogah nongkrong di pos ronda.',
+          'Warga kampung yang sering muncul dalam berbagai cerita. Ia digambarkan sebagai sosok dewasa yang berinteraksi dengan masyarakat dan turut meramaikan kehidupan kampung dalam serial tersebut.',
       'deskripsiEn':
-          'Pak Ableh is a close friend and loyal follower of Pak Ogah, who also does not have a steady job. He is portrayed as having a rather slow and less intelligent character, often accompanying Pak Ogah at the neighborhood guard post.',
+          'A village resident who frequently appears throughout the stories. He is portrayed as an adult community member who interacts with other villagers and contributes to the lively atmosphere of the village.',
     },
     '10-SEMAR': {
       'modelUrl': SupabaseConfig.getModelUrl('semar.glb'),
       'fileName': 'semar.glb',
       'modelName': 'Semar',
       'deskripsi':
-          'Semar adalah tokoh utama dalam kelompok Punakawan pewayangan Jawa dan Sunda yang diyakini sebagai penjelmaan dewa (Batara Ismaya). Ia melambangkan kearifan, kebijaksanaan murni, dan merupakan figur pamong spiritual bagi para ksatria.',
+          'Semar adalah pemimpin para Punakawan dan tokoh yang paling bijaksana. Meskipun berpenampilan sederhana, ia memiliki pengetahuan yang luas, sifat rendah hati, serta sering memberikan nasihat dan petunjuk kepada para ksatria.',
       'deskripsiEn':
-          'Semar is the main figure in the Punakawan group of Javanese and Sundanese puppetry, believed to be the incarnation of a god (Batara Ismaya). He symbolizes wisdom, pure sagacity, and acts as a spiritual guardian figure for the knights.',
+          'Semar is the leader of the Punakawan and the wisest among them. Despite his humble appearance, he possesses profound knowledge, great humility, and often provides guidance and advice to noble warriors.',
     },
     '11-CEPOT': {
       'modelUrl': SupabaseConfig.getModelUrl('cepot.glb'),
       'fileName': 'cepot.glb',
       'modelName': 'Cepot',
       'deskripsi':
-          'Astrajingga atau lebih dikenal dengan nama Cepot adalah tokoh wayang golek Sunda berwajah merah. Ia sangat dikenal karena sifatnya yang humoris, jenaka, dan sering menjadi media dalang untuk menyampaikan kritik sosial secara ringan.',
+          'Cepot, yang juga dikenal sebagai Astrajingga, adalah putra sulung Semar. Ia terkenal karena sifatnya yang jenaka, cerdas, berani, dan suka berbicara terus terang. Kelucuannya sering menjadi hiburan sekaligus sarana penyampaian kritik sosial.',
       'deskripsiEn':
-          'Astrajingga, better known as Cepot, is a red-faced Sundanese wooden puppet character. He is widely known for his humorous and witty nature, often serving as the puppeteer\'s medium to deliver social criticism lightly.',
+          'Cepot, also known as Astrajingga, is Semar\'s eldest son. He is famous for his humor, intelligence, courage, and straightforward manner of speaking. His comic behavior often serves as both entertainment and a means of delivering social criticism.',
     },
     '12-DAWALA': {
       'modelUrl': SupabaseConfig.getModelUrl('dawala.glb'),
       'fileName': 'dawala.glb',
       'modelName': 'Dawala',
       'deskripsi':
-          'Dawala adalah adik dari Cepot dalam jagat wayang golek Sunda yang memiliki ciri fisik berupa hidung mancung ke bawah. Ia memiliki sifat yang lebih tenang, sabar, dan selalu setia mendampingi saudaranya dalam berbagai situasi.',
+          'Dawala adalah putra Semar yang dikenal berwatak baik, setia, dan sopan. Ia sering menjadi penengah dalam percakapan antara Semar dan Cepot serta membantu menciptakan suasana yang harmonis.',
       'deskripsiEn':
-          'Dawala is Cepot\'s younger brother in the Sundanese puppet universe, physically characterized by a downward-pointing nose. He has a calmer and more patient nature, always loyally accompanying his brother in various situations.',
+          'Dawala is one of Semar\’s sons, known for his kind, loyal, and polite nature. He often acts as a mediator between Semar and Cepot, helping to maintain harmony within their conversations and interactions.',
     },
     '13-GARENG': {
       'modelUrl': SupabaseConfig.getModelUrl('gareng.glb'),
       'fileName': 'gareng.glb',
       'modelName': 'Gareng',
       'deskripsi':
-          'Gareng adalah tokoh Punakawan dengan ciri khas fisik tidak sempurna seperti mata juling dan kaki pincang. Ketidaksempurnaan ini secara filosofis merupakan simbolisasi dari sifat kehati-hatian dalam bertindak, melihat, dan melangkah di kehidupan.',
+          'Gareng merupakan salah satu anggota Punakawan yang dikenal sederhana, jujur, dan berhati baik. Dengan gaya bicara dan tingkah lakunya yang khas, Gareng sering menyampaikan pesan moral serta memberikan sudut pandang yang bijak dalam berbagai peristiwa.',
       'deskripsiEn':
-          'Gareng is a Punakawan character with distinctive physical imperfections such as crossed eyes and a limp. Philosophically, these imperfections symbolize caution in taking action, seeing, and stepping through life.',
+          'Gareng is a member of the Punakawan who is known for his simplicity, honesty, and good-hearted character. Through his distinctive speech and behavior, he frequently conveys moral lessons and offers wise perspectives on various situations.',
     },
     '14-AMIR-HAMZAH': {
       'modelUrl': SupabaseConfig.getModelUrl('amir_hamzah.glb'),
       'fileName': 'amir_hamzah.glb',
       'modelName': 'Amir Hamzah',
       'deskripsi':
-          'Amir Hamzah adalah tokoh sentral dalam pertunjukan Wayang Golek Menak yang diadaptasi dari literatur epik bernapaskan Islam. Sosoknya melambangkan keberanian tempur, ketangguhan, dan keteguhan pahlawan dalam menyebarkan nilai kebaikan.',
+          'Amir Hamzah adalah tokoh utama dalam siklus cerita Menak yang diadaptasi dari kisah kepahlawanan Islam. Ia digambarkan sebagai ksatria yang gagah berani, saleh, setia kepada agamanya, dan selalu membela kebenaran serta keadilan.',
       'deskripsiEn':
-          'Amir Hamzah is the central figure in the Wayang Golek Menak performance, adapted from Islamic epic literature. His figure symbolizes combat bravery, resilience, and the hero\'s steadfastness in spreading the values of goodness.',
+          'Amir Hamzah is the central hero of the Menak cycle, which is adapted from Islamic heroic tales. He is portrayed as a brave and noble warrior who is devout, loyal to his faith, and dedicated to defending truth and justice. ',
     },
     '15-PANJI-ASMARABANGUN': {
       'modelUrl': SupabaseConfig.getModelUrl('panji_asmarabangun.glb'),
       'fileName': 'panji_asmarabangun.glb',
       'modelName': 'Panji Asmarabangun',
       'deskripsi':
-          'Panji Asmarabangun adalah tokoh utama dalam siklus Cerita Panji kuno nusantara sebagai pewaris takhta Kerajaan Jenggala. Ia merepresentasikan sosok ksatria luhur ideal yang sangat halus budi pekertinya, berwibawa, berani, dan romantis.',
+          'Panji Asmarabangun adalah pangeran dari Kerajaan Jenggala yang menjadi tokoh utama dalam cerita Panji. Ia dikenal tampan, berbudi luhur, bijaksana, dan setia kepada kekasihnya, Dewi Sekartaji, dalam berbagai petualangan yang penuh tantangan.',
       'deskripsiEn':
-          'Panji Asmarabangun is the main character in the ancient archipelago\'s Panji cycle tales as the heir to the Jenggala Kingdom throne. He represents the ideal noble knight who is extremely refined in character, authoritative, brave, and romantic.',
+          'Panji Asmarabangun is a prince of the Kingdom of Jenggala and the main protagonist of the Panji stories. He is known for his handsome appearance, noble character, wisdom, and unwavering devotion to his beloved, Princess Sekartaji, throughout their many adventures and challenges.',
     },
     '16-PRABU-CAKRABUANA': {
       'modelUrl': SupabaseConfig.getModelUrl('prabu_cakrabuana.glb'),
       'fileName': 'prabu_cakrabuana.glb',
       'modelName': 'Prabu Cakrabuana',
       'deskripsi':
-          'Astrajingga atau lebih dikenal dengan nama Cepot adalah tokoh wayang golek Sunda berwajah merah. Ia sangat dikenal karena sifatnya yang humoris, jenaka, dan sering menjadi media dalang untuk menyampaikan kritik sosial secara ringan.',
+          'Prabu Cakrabuana, yang juga dikenal sebagai Pangeran Walangsungsang, merupakan tokoh penting dalam sejarah dan babad Cirebon. Ia dikenal sebagai pendiri serta pemimpin awal Cirebon yang berperan besar dalam penyebaran Islam dan pembangunan pemerintahan di wilayah tersebut.',
       'deskripsiEn':
-          'Astrajingga, better known as Cepot, is a red-faced Sundanese wooden puppet character. He is widely known for his humorous and witty nature, often serving as the puppeteer\'s medium to deliver social criticism lightly.',
+          'Prabu Cakrabuana, also known as Pangeran Walangsungsang, is an important figure in the history and chronicles of Cirebon. He is recognized as the founder and early ruler of Cirebon, playing a significant role in the spread of Islam and the establishment of governance in the region.',
     },
     '17-SIE-DJIN-KOEI-TJENG-TANG': {
       'modelUrl': SupabaseConfig.getModelUrl('sie_djin_koei_tjeng_tang.glb'),
       'fileName': 'sie_djin_koei_tjeng_tang.glb',
       'modelName': 'Sie Djin Koei Tjeng Tang',
       'deskripsi':
-          'Dawala adalah adik dari Cepot dalam jagat wayang golek Sunda yang memiliki ciri fisik berupa hidung mancung ke bawah. Ia memiliki sifat yang lebih tenang, sabar, dan selalu setia mendampingi saudaranya dalam berbagai situasi.',
+          'Sie Djin Koei adalah tokoh utama dalam kisah kepahlawanan Dinasti Tang. Ia digambarkan sebagai seorang panglima muda yang gagah berani, setia kepada negara, dan memiliki kemampuan perang yang luar biasa. Berkat kecerdasan, keteguhan hati, serta kesetiaannya kepada kaisar, Sie Djin Koei berhasil menaklukkan berbagai musuh dan menjadi salah satu pahlawan legendaris yang paling populer dalam cerita Wayang Potehi.',
       'deskripsiEn':
-          'Dawala is Cepot\'s younger brother in the Sundanese puppet universe, physically characterized by a downward-pointing nose. He has a calmer and more patient nature, always loyally accompanying his brother in various situations.',
+          'Sie Djin Koei is the central hero in the legendary stories of the Tang Dynasty. He is portrayed as a brave and talented young general, renowned for his loyalty to the kingdom and exceptional military skills. Through his intelligence, perseverance, and unwavering devotion to the emperor, Sie Djin Koei successfully defeats numerous enemies and becomes one of the most celebrated heroic figures in Potehi puppet theater.',
     },
     '18-PANGLIMA-SO-POO-TONG': {
       'modelUrl': SupabaseConfig.getModelUrl('panglima_so_poo_tong.glb'),
       'fileName': 'panglima_so_poo_tong.glb',
       'modelName': 'Panglima So Poo Tong',
       'deskripsi':
-          'Gareng adalah tokoh Punakawan dengan ciri khas fisik tidak sempurna seperti mata juling dan kaki pincang. Ketidaksempurnaan ini secara filosofis merupakan simbolisasi dari sifat kehati-hatian dalam bertindak, melihat, dan melangkah di kehidupan.',
+          'Panglima So Poo Tong merupakan salah satu jenderal terkemuka yang dikenal memiliki kemampuan strategi dan kepemimpinan yang baik. Dalam berbagai lakon Potehi, ia digambarkan sebagai panglima yang setia kepada kerajaan, berani menghadapi musuh, serta selalu mengutamakan kehormatan dan tugas negara. Sosoknya sering tampil sebagai pendukung utama dalam perjuangan mempertahankan keamanan dan kejayaan kerajaan Dinasti Tang.',
       'deskripsiEn':
-          'Gareng is a Punakawan character with distinctive physical imperfections such as crossed eyes and a limp. Philosophically, these imperfections symbolize caution in taking action, seeing, and stepping through life.',
+          'General So Poo Tong is a distinguished military commander known for his strategic brilliance and strong leadership. In various Potehi performances, he is depicted as a loyal servant of the kingdom who courageously faces enemies and consistently upholds honor and duty. He often appears as a key supporter in the struggle to protect the security and prosperity of the Tang Dynasty.',
     },
     '19-WAYANG-GOLEK-LENONG-BETAWI': {
       'modelUrl': SupabaseConfig.getModelUrl('wayang_golek_lenong_betawi.glb'),
       'fileName': 'wayang_golek_lenong_betawi.glb',
       'modelName': 'Wayang Golek Lenong Betawi',
       'deskripsi':
-          'Amir Hamzah adalah tokoh sentral dalam pertunjukan Wayang Golek Menak yang diadaptasi dari literatur epik bernapaskan Islam. Sosoknya melambangkan keberanian tempur, ketangguhan, dan keteguhan pahlawan dalam menyebarkan nilai kebaikan.',
+          'Wayang Golek Lenong Betawi adalah bentuk wayang golek kontemporer yang memadukan seni wayang, lenong, dan musik gambang kromong khas Betawi. Diciptakan oleh dalang Tizar Purbaya sebagai upaya menghadirkan wayang berciri Betawi, tokoh-tokohnya menampilkan karakter masyarakat Betawi yang jenaka, lugas, dan dekat dengan kehidupan sehari-hari. Cerita yang dibawakan umumnya diambil dari legenda, sejarah, maupun kisah modern Betawi.',
       'deskripsiEn':
-          'Amir Hamzah is the central figure in the Wayang Golek Menak performance, adapted from Islamic epic literature. His figure symbolizes combat bravery, resilience, and the hero\'s steadfastness in spreading the values of goodness.',
+          'The Betawi Lenong Rod Puppet is a contemporary form of rod puppet theater that combines traditional puppetry, Lenong folk theater, and Gambang Kromong music, all of which are distinctive elements of Betawi culture. Created by puppeteer Tizar Purbaya, it was developed to introduce a uniquely Betawi style of puppetry. Its characters portray the humor, straightforwardness, and everyday life of Betawi society. The stories performed are often based on local legends, historical events, and contemporary Betawi narratives.',
     },
     '20-WAYANG-GOLEK-SESEK': {
       'modelUrl': SupabaseConfig.getModelUrl('wayang_golek_sesek.glb'),
       'fileName': 'wayang_golek_sesek.glb',
       'modelName': 'Wayang Golek Sesek',
       'deskripsi':
-          'Panji Asmarabangun adalah tokoh utama dalam siklus Cerita Panji kuno nusantara sebagai pewaris takhta Kerajaan Jenggala. Ia merepresentasikan sosok ksatria luhur ideal yang sangat halus budi pekertinya, berwibawa, berani, dan romantis.',
+          'Wayang Golek Sesek merupakan kreasi wayang golek yang berasal dari Bogor, Jawa Barat. Keunikannya terletak pada penciptaan karakter yang terinspirasi dari berbagai jenis bambu yang tumbuh di Indonesia. Setiap tokoh memiliki bentuk, sifat, dan nama yang berbeda, tidak mengacu pada tokoh pewayangan klasik seperti Mahabharata atau Ramayana. Wayang ini menjadi simbol kreativitas seni kontemporer yang mengangkat kekayaan alam dan budaya Nusantara ke dalam bentuk pertunjukan wayang.',
       'deskripsiEn':
-          'Panji Asmarabangun is the main character in the ancient archipelago\'s Panji cycle tales as the heir to the Jenggala Kingdom throne. He represents the ideal noble knight who is extremely refined in character, authoritative, brave, and romantic.',
+          'The Sesek Rod Puppet is a contemporary rod puppet creation originating from Bogor, West Java. Its uniqueness lies in its characters, which are inspired by various species of bamboo found throughout Indonesia. Each puppet has its own distinctive appearance, personality, and name, rather than being based on classical wayang figures from the Mahabharata or Ramayana epics. This puppet tradition represents a creative innovation in modern Indonesian puppetry, highlighting the richness of the nation\'s natural and cultural heritage through performance art.',
     },
   };
 
