@@ -1011,8 +1011,8 @@ class _TentangMuseumPageState extends State<_TentangMuseumPage>
           'Ririn Pratiwi Suharto, S.S., M.Hum.',
           'NIDN. 0730129201',
         ),
-        _buildPersonCard('Tri Ramadani Arjo S.ST., M.Kom.', 'NIDN. 1005108603'),
         _buildPersonCard('Achmad Suyono, S.Pd., M.S.', 'NIDN. 0026017106'),
+        _buildPersonCard('Tri Ramadani Arjo S.ST., M.Kom.', 'NIDN. 1005108603'),
         _buildPersonCard(
           'Andi Reza Maulana, S.Pd., M.Pd.',
           'NIDN. 3151772673130303',
