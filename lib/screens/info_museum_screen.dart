@@ -463,6 +463,7 @@ Widget _sectionTitle(String text, {Color color = const Color(0xFFD4A24C)}) {
 Widget _bodyText(String text) {
   return Text(
     text,
+    textAlign: TextAlign.justify,
     style: const TextStyle(
       color: Colors.white70,
       fontSize: 14,
@@ -566,17 +567,17 @@ class _TentangAplikasiPageState extends State<_TentangAplikasiPage>
     final isId = lp.isIndonesian;
 
     return _BaseSubPage(
-      title: isId ? 'Tentang Aplikasi' : 'About the App',
+      title: isId ? 'Tentang Aplikasi' : 'About the Application',
       accentColor: const Color(0xFF748FFC),
       children: [
         _sectionTitle(
-          isId ? 'Tentang Aplikasi' : 'About the App',
+          isId ? 'Tentang Aplikasi' : 'About the Application',
           color: const Color(0xFF748FFC),
         ),
         _bodyText(
           isId
-              ? 'Aplikasi ini merupakan media edukasi interaktif berbasis Augmented Reality (AR) yang dirancang untuk membantu pengunjung mengenal koleksi Museum Gubug Wayang Mojokerto secara lebih menarik dan modern.\n\nDengan memanfaatkan teknologi AR, pengguna dapat memindai objek atau gambar wayang untuk menampilkan visual 3D serta informasi digital secara langsung.'
-              : 'This application is an interactive educational media based on Augmented Reality (AR), designed to help visitors explore the collection of Museum Gubug Wayang Mojokerto in a more engaging and modern way.\n\nBy leveraging AR technology, users can scan wayang objects or images to display 3D visuals and digital information directly.',
+              ? 'Aplikasi ini merupakan media edukasi interaktif dwi bahasa berbasis Augmented Reality. Aplikasi ini merupakan produk penelitian terapan inovasi yang dikembangkan oleh tim peneliti dari Politeknik Negeri Malang bekerja sama dengan Museum Gubug Wayang sebagai mitra penelitian.\n\nDengan memanfaatkan teknologi AR, pengguna dapat memindai objek atau gambar wayang untuk menampilkan visual 3D serta informasi digital secara langsung. Aplikasi dirancang untuk berjalan di perangkat Android, memberikan pengalaman museum yang imersif bagi semua kalangan.'
+              : 'This application is a bilingual interactive educational medium based on Augmented Reality (AR) technology. It is an innovative applied research product developed by a research team from Politeknik Negeri Malang in collaboration with Museum Gubug Wayang as a research partner.\n\nBy utilizing AR technology, users can scan wayang objects or images to instantly display 3D visualizations and digital information. The application is designed to run on Android devices, providing an immersive museum experience for visitors of all ages and backgrounds.',
         ),
 
         _divider(),
@@ -588,8 +589,8 @@ class _TentangAplikasiPageState extends State<_TentangAplikasiPage>
               flex: 3,
               child: _bodyText(
                 isId
-                    ? 'Aplikasi dirancang untuk berjalan di perangkat Android dan iOS modern, memberikan pengalaman museum yang imersif bagi semua kalangan.'
-                    : 'The app is designed to run on modern Android and iOS devices, providing an immersive museum experience for all audiences.',
+                    ? 'Aplikasi dirancang untuk berjalan di perangkat Android untuk memberikan pengalaman museum yang imersif bagi semua kalangan.'
+                    : 'The application is designed to run on Android devices for providing an immersive museum experience for all audiences.',
               ),
             ),
             const SizedBox(width: 14),
@@ -649,7 +650,7 @@ class _FiturAplikasiPageState extends State<_FiturAplikasiPage>
             },
             {
               'icon': Icons.language_rounded,
-              'judul': 'Dwi Bahasa',
+              'judul': 'Informasi Dwi Bahasa',
               'desc':
                   'Informasi tersedia dalam dua bahasa (Indonesia & English) untuk menjangkau pengunjung lokal dan internasional.',
             },
@@ -657,11 +658,11 @@ class _FiturAplikasiPageState extends State<_FiturAplikasiPage>
               'icon': Icons.info_rounded,
               'judul': 'Informasi Edukatif',
               'desc':
-                  'Menampilkan sejarah, filosofi, dan karakter dari setiap koleksi wayang secara detail.',
+                  'Menampilkan deskripsi karakter dari setiap koleksi wayang secara detail.',
             },
             {
               'icon': Icons.collections_bookmark_rounded,
-              'judul': 'My Koleksi',
+              'judul': 'Koleksi Saya',
               'desc':
                   'Simpan koleksi yang sudah di-scan dan akses kembali kapan saja tanpa perlu scan ulang.',
             },
@@ -671,34 +672,34 @@ class _FiturAplikasiPageState extends State<_FiturAplikasiPage>
               'icon': Icons.qr_code_scanner_rounded,
               'judul': 'AR Camera Scan',
               'desc':
-                  'Point the camera at wayang images or objects to display 3D models directly.',
+                  'Point the camera at a wayang image or object to instantly display its 3D model.',
             },
             {
               'icon': Icons.language_rounded,
-              'judul': 'Bilingual Support',
+              'judul': 'Bilingual Information',
               'desc':
-                  'Information is available in two languages (Indonesian & English) to reach local and international visitors.',
+                  'Information is available in two languages (Indonesian and English) to accommodate both local and international visitors.',
             },
             {
               'icon': Icons.info_rounded,
-              'judul': 'Educational Info',
+              'judul': 'Educational Content',
               'desc':
-                  'Displays history, philosophy, and character details of each wayang collection.',
+                  'Provides detailed descriptions and background information about each wayang character and collection.',
             },
             {
               'icon': Icons.collections_bookmark_rounded,
               'judul': 'My Collection',
               'desc':
-                  'Save scanned collections and access them anytime without rescanning.',
+                  'Save scanned collections and access them anytime without the need to scan them again.',
             },
           ];
 
     return _BaseSubPage(
-      title: isId ? 'Fitur Aplikasi' : 'App Features',
+      title: isId ? 'Fitur Aplikasi' : 'Application Features',
       accentColor: const Color(0xFF38D9A9),
       children: [
         _sectionTitle(
-          isId ? 'Fitur Aplikasi' : 'App Features',
+          isId ? 'Fitur Aplikasi' : 'Application Features',
           color: const Color(0xFF38D9A9),
         ),
         Row(
@@ -822,16 +823,12 @@ class _TujuanPengembanganPageState extends State<_TujuanPengembanganPage>
 
     final List<String> tujuan = isId
         ? [
-            'Mengenalkan budaya wayang kepada generasi muda',
-            'Meningkatkan minat kunjungan ke museum',
-            'Menggabungkan teknologi digital dengan edukasi budaya',
-            'Mendukung promosi Museum Gubug Wayang Mojokerto',
+            'untuk mengenalkan dan mempromosikan koleksi Museum Gubug Wayang',
+            'memberikan pengalaman museum yang imersif bagi semua kalangan',
           ]
         : [
-            'Introducing wayang culture to the younger generation',
-            'Increasing interest in museum visits',
-            'Combining digital technology with cultural education',
-            'Supporting the promotion of Museum Gubug Wayang Mojokerto',
+            'To introduce and promote the collections of Museum Gubug Wayang.',
+            'To provide an immersive museum experience for visitors from all backgrounds.',
           ];
 
     return _BaseSubPage(
@@ -874,7 +871,7 @@ class _TujuanPengembanganPageState extends State<_TujuanPengembanganPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _sectionTitle(
-                    isId ? 'Tujuan Pengembangan' : 'Development Goals',
+                    isId ? 'Tujuan Pengembangan' : 'Development Objectives',
                     color: const Color(0xFFDA77FF),
                   ),
                   _bodyText(
@@ -914,16 +911,20 @@ class _TentangMuseumPageState extends State<_TentangMuseumPage>
       title: isId ? 'Tentang Museum' : 'About the Museum',
       accentColor: const Color(0xFFD4A24C),
       children: [
-        _sectionTitle(isId ? 'Tentang Museum' : 'About the Museum'),
+        _sectionTitle(
+          isId ? 'Tentang Museum Gubug Wayang' : 'About Museum Gubug Wayang',
+        ),
         _bodyText(
           isId
-              ? 'Museum Gubug Wayang Mojokerto merupakan tempat pelestarian budaya yang menyimpan berbagai koleksi wayang dari berbagai daerah di Indonesia, khususnya Jawa. Museum ini menjadi sarana edukasi dan wisata budaya bagi masyarakat.'
-              : 'Museum Gubug Wayang Mojokerto is a cultural preservation site that houses various wayang collections from different regions of Indonesia, especially Java. This museum serves as an educational and cultural tourism resource for the community.',
+              ? 'Museum Gubug Wayang didirikan oleh Yensen Project Indonesia sebagai wujud rasa peduli terhadap seni dan budaya Indonesia yang beraneka ragam. Kecintaaan terhadap sejarah seni dan budaya Indonesia memberikan semangat untuk menjaga dan melestarikannya. Koleksi yang ada meliputi wayang dari berbagai daerah di Indonesia, pusaka asli Indonesia, alat musik tradisional, mainan anak – anak, topeng dan lain lainnya. Wisata edukasi seni dan budaya menjadi tujuan berdirinya museum Gubug Wayang, agar masyarakat lebih mengenal dan merasa memiliki seni dan budaya yang sudah diwariskan secara turun temurun. Museum ini diresmikan pada tanggal 15 Agustus 2015 oleh Bp. Drs Suyadi/Pak Raden. Setelah perjalanan dua tahun museum, pada tanggal 15 Agustus 2017, Yensen Project Indonesia resmi berada dibawah naungan Sendjojo Njoto Seni Budoyo yang dikelola langsung oleh Bpk Sendjojo Njoto sebagai pemilik tunggal seluruh aset dan hak label Sendjojo Njoto Seni Budoyo beserta Yensen Project Indonesia. Kecintaan Museum Gubug Wayang akan luhurnya budaya Indonesia menjadi semangat kemerdekaan untuk terus berbenah dan memberikan informasi aktual dan faktual tentang Sejarah budaya Indonesia.'
+              : 'Museum Gubug Wayang was established by Yensen Project Indonesia as a manifestation of its commitment to preserving Indonesia’s rich and diverse arts and cultural heritage. A deep appreciation for Indonesian history, arts, and culture has inspired continuous efforts to safeguard and promote these valuable traditions. The museum\'s collections include wayang from various regions of Indonesia, authentic Indonesian heirlooms, traditional musical instruments, children\'s traditional toys, masks, and many other cultural artifacts. Museum Gubug Wayang was founded as an educational tourism destination dedicated to arts and culture, with the goal of helping the public better understand, appreciate, and take pride in Indonesia\'s cultural heritage that has been passed down through generations. The museum was officially inaugurated on August 15, 2015, by Drs. Suyadi, widely known as Pak Raden. After two years of operation, on August 15, 2017, Yensen Project Indonesia officially came under the management of Sendjojo Njoto Seni Budoyo, which is directly managed by Mr. Sendjojo Njoto as the sole owner of all assets and intellectual property rights associated with the Sendjojo Njoto Seni Budoyo and Yensen Project Indonesia brands. The museum\’s dedication to preserving the noble values of Indonesian culture continues to inspire its mission to improve and provide accurate, up-to-date, and factual information about Indonesia\’s cultural history.',
         ),
 
         _divider(),
 
-        _sectionTitle(isId ? 'Kontak Kami' : 'Contact Us'),
+        _sectionTitle(
+          isId ? 'Alamat dan Kontak kami' : 'Contact Information Address',
+        ),
         _buildContactItem(
           Icons.location_on_rounded,
           isId ? 'Alamat' : 'Address',
@@ -998,7 +999,9 @@ class _TentangMuseumPageState extends State<_TentangMuseumPage>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          isId ? 'Tim Penelitian' : 'Research Team',
+          isId
+              ? 'Tim Penelitian dan Pengembangan'
+              : 'Research and Development Team',
           style: const TextStyle(
             color: Colors.white,
             fontSize: 15,
@@ -1021,7 +1024,7 @@ class _TentangMuseumPageState extends State<_TentangMuseumPage>
         const SizedBox(height: 20),
 
         Text(
-          isId ? 'Tim Pengembang' : 'Development Team',
+          isId ? 'Mitra' : 'Research Partner',
           style: const TextStyle(
             color: Colors.white,
             fontSize: 15,
@@ -1031,7 +1034,7 @@ class _TentangMuseumPageState extends State<_TentangMuseumPage>
         ),
         const SizedBox(height: 10),
         _buildPersonCard(
-          isId ? '(Nama Tim Pengembang)' : '(Developer Team Name)',
+          isId ? 'Museum Gubung Wayang' : 'Museum Gubung Wayang',
           '',
         ),
       ],
